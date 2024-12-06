@@ -1,0 +1,6 @@
+*.vscode*  
+*.git
+ChampSim/vcpkg/
+ChampSim/vcpkg_installed/
+ChampSim/test/
+*__pycache__*
