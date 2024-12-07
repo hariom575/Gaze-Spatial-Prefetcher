@@ -76,7 +76,7 @@ First, ChampSim needs to be successfully built. The following are the build step
 Clone Gaze from GitHub repository
  
 ```bash
-git clone   
+git clone https://github.com/SJTU-Storage-Lab/Gaze-Spatial-Prefetcher.git
 ```
 
 
