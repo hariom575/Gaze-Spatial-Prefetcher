@@ -4,3 +4,6 @@ ChampSim/vcpkg/
 ChampSim/vcpkg_installed/
 ChampSim/test/
 *__pycache__*
+ChampSim/traces
+*venv*
+traces

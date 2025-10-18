@@ -12,7 +12,7 @@ print('Using results from run_single_core_gaze_analysis.py and run_single_core_m
 prefetchers = ['no', '1offset', 'gaze_analysis_pht', 'gaze']
 prefixes = {prefetcher: 'v00' for prefetcher in prefetchers}
 
-speedup_detail = get_singlecore_speedup_detail(prefetchers, prefixes, workloads_all)
+speedup_detail = get_singlecore_speedup_detail(prefetchers, prefixes, workload_spec_single)
 
 # -------------------------- drawing figure 4 --------------------------
 fig, ax = plt.subplots(figsize=(3.7, 1.5))
@@ -27,7 +27,7 @@ sorted_workloads = [a[i][0] for i in range(len(a))]
 #     print(i+1, w)
 # print(a)
 
-x_to_annotation = [1, 24, 32, 39, 79, 92, 113, 121, 142, 155, 163, 170, 185, 188, 192, 198, 201]
+x_to_annotation = [1]
 
 workload_index = [_+1 for _ in range(len(sorted_workloads))] 
 
@@ -56,6 +56,7 @@ ax.annotate(workloads_name_map[sorted_workloads[x_to_annotation[i]-1]], xy=(x_to
         textcoords='data', ha='left', va='center', fontsize=4, color='black', alpha=0.5, 
         arrowprops=dict(arrowstyle='-', color='black', linewidth=0.3, shrinkA=0, shrinkB=0, alpha=0.5,
                         connectionstyle='arc3,rad=0.2', mutation_scale=3))
+"""
 i=1
 ax.annotate(workloads_name_map[sorted_workloads[x_to_annotation[i]-1]], xy=(x_to_annotation[i], ipc_values[x_to_annotation[i] - 1]), xytext=(x_to_annotation[i]+8, 1 + 0.4),
         textcoords='data', ha='right', va='center', fontsize=4, color='black', alpha=0.5,
@@ -131,6 +132,7 @@ ax.annotate(workloads_name_map[sorted_workloads[x_to_annotation[i]-1]], xy=(x_to
         textcoords='data', ha='right', va='center', fontsize=4, color='black', alpha=0.5,
         arrowprops=dict(arrowstyle='-', color='black', linewidth=0.3, shrinkA=0, shrinkB=0, alpha=0.5,
                         connectionstyle='arc3,rad=0', mutation_scale=3))
+"""
 # i=15
 # ax.annotate(workloads_name_map[sorted_workloads[x_to_annotation[i]-1]], xy=(x_to_annotation[i], ipc_values[x_to_annotation[i] - 1]), xytext=(x_to_annotation[i]-10, 1 + 1.6),
 #         textcoords='data', ha='right', va='center', fontsize=4, color='black', alpha=0.5,
@@ -171,4 +173,5 @@ ax.legend(loc='best', ncol=6, frameon=False, fontsize=4)
 
 plt.tight_layout()
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.4, hspace=None)
+os.makedirs('fig', exist_ok=True)
 plt.savefig('fig/fig9.pdf', dpi=1024, bbox_inches='tight', pad_inches=0.025)

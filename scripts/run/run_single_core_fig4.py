@@ -11,7 +11,7 @@ def main():
     
     prefix = 'v00'
     num_warmup, num_simulation = 200000000, 200000000
-    begin, num = 0, 201
+    begin, num = 0, 1
     
     for prefetcher in ['2offset', '3offset', '4offset']:
         run_1core(prefetcher, prefix, num_warmup, num_simulation, begin, num)

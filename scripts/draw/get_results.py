@@ -49,7 +49,6 @@ def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'hom
     workloads_simplified = []
     json_root_path = '../../json/'+str(num_cores)+'core/'
     log_root_path = '../../log/'+str(num_cores)+'core/'
-
     ipc, cycles, llc_load_miss, l1_pf_late, l1_pf_useful, l1_pf_useless, l2_pf_useful, l2_pf_useless = {}, {}, {}, {}, {}, {}, {}, {}
 
     json_file_lists = {}
