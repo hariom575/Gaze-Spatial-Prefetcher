@@ -1,0 +1,44 @@
+41 41 41
+Available num physical pages: 35184372088576
+WARNING: physical memory size is smaller than virtual memory size
+
+*** ChampSim Multicore Out-of-Order Simulator ***
+
+Warmup Instructions: 200000000
+Simulation Instructions: 200000000
+Number of CPUs: 1
+Page size: 4096
+
+Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
+cpu0_L1D Gaze NEW NEW prefetcher
+Pattern Table index_len: 6
+Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
+Heartbeat CPU 0 instructions: 10000000 cycles: 2500068 heartbeat IPC: 3.9999 cumulative IPC: 3.9999 (Simulation time: 0 hr 3 min 16 sec) 
+Heartbeat CPU 0 instructions: 20000000 cycles: 5000120 heartbeat IPC: 3.99992 cumulative IPC: 3.99991 (Simulation time: 0 hr 8 min 6 sec) 
+Heartbeat CPU 0 instructions: 30000000 cycles: 7500120 heartbeat IPC: 4 cumulative IPC: 3.99994 (Simulation time: 0 hr 13 min 4 sec) 
+Heartbeat CPU 0 instructions: 40000000 cycles: 10000120 heartbeat IPC: 4 cumulative IPC: 3.99996 (Simulation time: 0 hr 17 min 50 sec) 
+Heartbeat CPU 0 instructions: 50000000 cycles: 12500120 heartbeat IPC: 4 cumulative IPC: 3.99997 (Simulation time: 0 hr 22 min 25 sec) 
+Heartbeat CPU 0 instructions: 60000000 cycles: 15000120 heartbeat IPC: 4 cumulative IPC: 3.99997 (Simulation time: 0 hr 27 min 12 sec) 
+Heartbeat CPU 0 instructions: 70000000 cycles: 17500120 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 32 min 23 sec) 
+Heartbeat CPU 0 instructions: 80000000 cycles: 20000120 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 37 min 44 sec) 
+Heartbeat CPU 0 instructions: 90000000 cycles: 22500120 heartbeat IPC: 4 cumulative IPC: 3.99998 (Simulation time: 0 hr 42 min 59 sec) 
+Heartbeat CPU 0 instructions: 100000000 cycles: 25000120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 47 min 40 sec) 
+Heartbeat CPU 0 instructions: 110000000 cycles: 27500120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 52 min 31 sec) 
+Heartbeat CPU 0 instructions: 120000000 cycles: 30000120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 0 hr 57 min 31 sec) 
+Heartbeat CPU 0 instructions: 130000000 cycles: 32500120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 2 min 44 sec) 
+Heartbeat CPU 0 instructions: 140000000 cycles: 35000120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 7 min 53 sec) 
+Heartbeat CPU 0 instructions: 150000000 cycles: 37500120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 13 min 24 sec) 
+Heartbeat CPU 0 instructions: 160000000 cycles: 40000120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 18 min 11 sec) 
+Heartbeat CPU 0 instructions: 170000000 cycles: 42500120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 23 min 4 sec) 
+Heartbeat CPU 0 instructions: 180000000 cycles: 45000120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 27 min 50 sec) 
+Heartbeat CPU 0 instructions: 190000000 cycles: 47500120 heartbeat IPC: 4 cumulative IPC: 3.99999 (Simulation time: 1 hr 32 min 12 sec) 
+Heartbeat CPU 0 instructions: 200000001 cycles: 50000147 heartbeat IPC: 3.99996 cumulative IPC: 3.99999 (Simulation time: 1 hr 35 min 42 sec) 
+Max paddr 137M
+Warmup finished CPU 0 instructions: 200000001 cycles: 50000148 cumulative IPC: 3.99999 (Simulation time: 1 hr 35 min 42 sec) 
+
+Warmup complete CPU 0 instructions: 200000001 cycles: 50000148 (Simulation time: 1 hr 35 min 42 sec) 
+
+Heartbeat CPU 0 instructions: 210000003 cycles: 91279797 heartbeat IPC: 0.242251 cumulative IPC: 0.242251 (Simulation time: 2 hr 6 min 35 sec) 
+Heartbeat CPU 0 instructions: 220000001 cycles: 132589298 heartbeat IPC: 0.242076 cumulative IPC: 0.242163 (Simulation time: 2 hr 37 min 13 sec) 
+Heartbeat CPU 0 instructions: 230000004 cycles: 173995728 heartbeat IPC: 0.241509 cumulative IPC: 0.241945 (Simulation time: 3 hr 8 min 42 sec) 
+Heartbeat CPU 0 instructions: 240000003 cycles: 215649014 heartbeat IPC: 0.240078 cumulative IPC: 0.241475 (Simulation time: 3 hr 35 min 31 sec) 

@@ -13,7 +13,7 @@ def run_1core(prefetcher, prefix, num_warmup, num_simulation, begin, num):
         if not os.path.exists(dir):
             os.makedirs(dir)
     
-    for workload in workloads_all[begin:begin+num]:
+    for workload in workload_spec_single[begin:begin+num]:
         trace = f' ../traces/{workload[0]}'
         run_command = f'nohup ./bin/{name} --json=../json/1core/{prefetcher}/{prefix}-{workload[1]}.json'
         if workload[2] == True:

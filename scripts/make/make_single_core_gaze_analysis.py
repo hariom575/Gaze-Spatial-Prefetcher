@@ -9,7 +9,7 @@ def main():
     
     print('Making prefetchers used to generate the results of fig. 9, 10')
     
-    for prefetcher in ['gaze_dynamic_dc_sm4ss']:
+    for prefetcher in ['1offset','gaze','gaz_analysis_pht','gaze_analysis_pht4ss','gaze_analysis_sm4ss','gaze_dynamic_dc_sm4ss']:
         make_1core(prefetcher)
     
     print('Done.')

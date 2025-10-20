@@ -3,6 +3,18 @@
 
 #include <assert.h>
 
+/*
+ * Gaze into the Pattern: Characterizing Spatial Patterns with Internal Temporal Correlations for Hardware Prefetching
+ *
+ * To appear in 31st IEEE International Symposium on High-Performance Computer Architecture (HPCA 2025),
+ * 3/1/2025-3/5/2025, Las Vegas, NV, USA
+ *
+ * @Authors: Zixiao Chen, Chentao Wu, Yunfei Gu, Ranhao Jia, Jie Li, and Minyi Guo
+ * @Manteiners: Zixiao Chen
+ * @Email: chen_zx@sjtu.edu.cn
+ * @Date: 12/02/2024
+ */
+
 static std::vector<gaze::Gaze> prefetchers;
 
 namespace gaze {
@@ -65,7 +77,7 @@ AccumulateTable::Entry* AccumulateTable::set_pattern(uint64_t region_num, uint64
             entry->data.timestamp++;
             int stride = int(offset) - int(entry->data.last_offset);
             // if (entry->data.missed_in_pt || entry->data.con)
-            //     this->__stride_prefetch = (stride == entry->data.last_stride);
+                // this->__stride_prefetch = (stride == entry->data.last_stride);
             entry->data.order[offset] = entry->data.timestamp;
             entry->data.pattern[offset] = true;
             entry->data.last_offset = offset;
@@ -77,8 +89,6 @@ AccumulateTable::Entry* AccumulateTable::set_pattern(uint64_t region_num, uint64
 }
 
 AccumulateTable::Entry AccumulateTable::insert(uint64_t region_num, uint64_t trigger_offset, uint64_t second_offset, uint64_t pc, bool missed_in_pt, bool con) {
-    // if (missed_in_pt)
-    //     std::cout << "missed in pt" << std::endl;
     uint64_t key = build_key(region_num);
     std::vector<bool> pattern(NUM_BLOCKS, false);
     std::vector<int> order(NUM_BLOCKS, 0);
@@ -157,27 +167,36 @@ void PatternTable::insert(uint64_t trigger, uint64_t second, uint64_t pc, uint64
     }
 }
 
-/*
-this was original find function
 PatternTable::Entry* PatternTable::find(uint64_t trigger, uint64_t second, uint64_t pc, uint64_t region_num) {
     if (trigger != 0 || second != 1) { // not ss
         uint64_t key = build_key(trigger, second, pc, region_num);
-        return nullptr; // pht if off
+        return Super::find(key);
     } else {
         uint64_t hashed_pc = custom_util::my_hash_index(pc, LOG2_BLOCK_SIZE, 8);
 
         if (con_counter == 8 || con_pc.end() != std::find_if(con_pc.begin(), con_pc.end(), [hashed_pc](auto& x) { return x == hashed_pc; })) {
             Entry* ret = new Entry();
             ret->data.con = true;
-            for (int i = 0; i < NUM_BLOCKS; i++) {
-                ret->data.pattern[i] = PF_FILL_L1;
-            }
-            return ret;
-        } else if (con_counter > 2) {
-            Entry* ret = new Entry();
-            ret->data.con = true;
             for (int i = 0; i < NUM_BLOCKS / 4; i++) {
                 ret->data.pattern[i] = PF_FILL_L1;
+            }
+            for (int i = NUM_BLOCKS / 4; i < NUM_BLOCKS; i++) {
+                ret->data.pattern[i] = PF_FILL_L2;
+            }
+            return ret;
+        }
+        else if (con_counter > 3) {
+            Entry* ret = new Entry();
+            ret->data.con = true;
+            for (int i = 0; i < NUM_BLOCKS / 2; i++) {
+                ret->data.pattern[i] = PF_FILL_L2;
+            }
+            return ret;
+        }else if (con_counter>1){
+            Entry* ret = new Entry();
+            ret->data.con = true;
+            for (int i = NUM_BLOCKS/2; i < NUM_BLOCKS; i++) {
+                ret->data.pattern[i] = PF_FILL_L2;
             }
             return ret;
         }
@@ -185,57 +204,6 @@ PatternTable::Entry* PatternTable::find(uint64_t trigger, uint64_t second, uint6
     }
     assert(0);
 }
-*/
-/*below is modified find function for adaptive degree based on confidence counter value*/
-
-PatternTable::Entry* PatternTable::find(uint64_t trigger, uint64_t second, uint64_t pc, uint64_t region_num) {
-    if (trigger != 0 || second != 1) {
-        uint64_t key = build_key(trigger, second, pc, region_num);
-        return Super::find(key);
-    } else {
-        Entry* ret = new Entry();
-        ret->data.con = true;
-
-        // -------------------------------
-        // Dynamic Degree and Split Policy
-        // -------------------------------
-        int degree = 0;
-        double l1_ratio = 0.0;  // portion of blocks to fill in L1
-
-        if (con_counter >= 8) {
-            degree = NUM_BLOCKS;
-            l1_ratio = 0.50;   // 50% L1, 50% L2 (confident, wide coverage)
-        } else if (con_counter >= 6) {
-            degree = NUM_BLOCKS * 3 / 4;
-            l1_ratio = 0.40;   // slightly more L1
-        } else if (con_counter >= 4) {
-            degree = NUM_BLOCKS / 2;
-            l1_ratio = 0.25;   // mostly L2
-        } else if (con_counter >= 2) {
-            degree = NUM_BLOCKS / 4;
-            l1_ratio = 0.10;   // mostly L2, cautious
-        } else {
-            delete ret;
-            return nullptr;    // confidence too low
-        }
-
-        int l1_blocks = static_cast<int>(degree * l1_ratio);
-
-        // -------------------------------
-        // Fill Pattern
-        // -------------------------------
-        for (int i = 0; i < degree; i++) {
-            if (i < l1_blocks)
-                ret->data.pattern[i] = PF_FILL_L1;
-            else
-                ret->data.pattern[i] = PF_FILL_L2;
-        }
-
-        return ret;
-    }
-}
-
-
 
 std::string PatternTable::log() {
     std::vector<std::string> headers({"Trigger", "Second", "Pattern"});
@@ -270,8 +238,8 @@ void PrefetchBuffer::insert(uint64_t region_num, std::vector<int> pattern, uint6
             for (int i = 0; i < NUM_BLOCKS; i++) {
                 if (pattern[i] == PF_FILL_L1) {
                     if (entry->data.pattern[i] != PF_FILL_L1) {
-                        if (entry->data.pf_metadata[i] == 2) { // from con, promote
-                            entry->data.pf_metadata[i] = 3;    // set to promoted
+                        if (entry->data.pf_metadata[i] == 2) { 
+                            entry->data.pf_metadata[i] = 3;    
                         }
                     }
                     entry->data.pattern[i] = PF_FILL_L1;
@@ -381,7 +349,6 @@ void Gaze::access(uint64_t block_num, uint64_t pc, CACHE* cache) {
             ft.insert(region_num, region_offset, pc);
             return;
         } else if (entry->data.trigger_offset != region_offset) { // SECOND OFFSET
-
             // 1. find pattern
             auto pt_entry = find_in_pt(entry->data.trigger_offset, region_offset, pc, region_num);
             // pattern empty?
@@ -509,7 +476,7 @@ void CACHE::prefetcher_initialize() {
 }
 
 uint32_t CACHE::prefetcher_cache_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, uint32_t metadata_in) {
-    uint64_t line_addr = (addr >> LOG2_BLOCK_SIZE); // Line addr
+    uint64_t line_addr = (addr >> LOG2_BLOCK_SIZE); 
     uint64_t region_num = (addr >> LOG2_PAGE_SIZE);
     int offset = line_addr % gaze::NUM_BLOCKS;
 

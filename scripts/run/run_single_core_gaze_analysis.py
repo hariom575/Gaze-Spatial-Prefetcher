@@ -11,9 +11,9 @@ def main():
     
     prefix = 'v00'
     num_warmup, num_simulation = 200000000, 200000000
-    begin, num = 0,1
+    begin, num = 0,8
     
-    for prefetcher in ['gaze_dynamic_dc_sm4ss']:
+    for prefetcher in ['no','1offset','gaze','gaz_analysis_pht','gaze_analysis_pht4ss','gaze_analysis_sm4ss','gaze_dynamic_dc_sm4ss']:
         run_1core(prefetcher, prefix, num_warmup, num_simulation, begin, num)
     
     print('Running.')
