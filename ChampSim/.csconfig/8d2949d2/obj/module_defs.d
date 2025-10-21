@@ -1,18 +1,18 @@
-/home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj/module_defs.o: \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/src/module_defs.cc \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/cache.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/champsim.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/champsim_constants.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/util.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/msl/bits.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/msl/lru_table.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/msl/bits.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/memory_class.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/util.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/operable.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/cache_modules.inc \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/ooo_cpu.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/instruction.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/inc/trace_instruction.h \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/ooo_cpu_modules.inc \
- /home/hariom/Documents/Github/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/module_defs.inc
+/home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj/module_defs.o: \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/src/module_defs.cc \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/cache.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/champsim.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/champsim_constants.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/util.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/msl/bits.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/msl/lru_table.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/msl/bits.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/memory_class.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/util.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/operable.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/cache_modules.inc \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/ooo_cpu.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/instruction.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/inc/trace_instruction.h \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/ooo_cpu_modules.inc \
+ /home/pragathi/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc/module_defs.inc
