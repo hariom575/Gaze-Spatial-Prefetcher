@@ -145,7 +145,7 @@ ChampSim completed all CPUs
           "miss":0
         },
         "PREFETCH": {
-          "hit":0,
+          "hit":0,n
           "miss":0
         },
         "WRITE": {
@@ -273,7 +273,7 @@ ChampSim completed all CPUs
           "RQ_FULL": 0,
           "WQ_ACCESS": 0,
           "WQ_MERGED": 0,
-          "WQ_FULL": 0
+          "WQ_FULL"n: 0
         }
       },
       "cpu0_L1D": {
@@ -289,7 +289,7 @@ ChampSim completed all CPUs
           "hit":335457,
           "miss":1749492
         },
-        "WRITE": {
+        "WRITE": {n
           "hit":2412867,
           "miss":3455757
         },
@@ -308,7 +308,7 @@ ChampSim completed all CPUs
         "pf_late_at_l2_from_l1":          0,
         "pf_useless_at_l2_from_l1":          0,
         "pf_at_l2_to_l1":       1007,
-        "pf_fill_this_level":     924118,
+        "pf_fill_thnis_level":     924118,
         "miss latency": 16.8305,
         "cache queues": {
           "PQ_ACCESS": 2087922,

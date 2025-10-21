@@ -35,6 +35,7 @@ workload_spec_single = [
     # ['pr-3.trace.gz','pr-3'],
     # ['sssp-14.trace.gz','sssp-14']
 ]
+
 workloads_spec17 = [
     ['602.gcc_s-734B.champsimtrace.xz', '602_734'], ['602.gcc_s-1850B.champsimtrace.xz', '602_1850'], ['602.gcc_s-2226B.champsimtrace.xz', '602_2226'],
     ['603.bwaves_s-1740B.champsimtrace.xz', '603_1740'], ['603.bwaves_s-2609B.champsimtrace.xz', '603_2609'], ['603.bwaves_s-2931B.champsimtrace.xz', '603_2931'],
