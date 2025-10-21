@@ -19,8 +19,23 @@ workloads_spec06 = [
 ]
 
 workload_spec_single = [
-    ['410.bwaves-1963B.champsimtrace.xz', '410_1963'],['403.gcc-17B.champsimtrace.xz', '403_17'],['436.cactusADM-1804B.champsimtrace','436_1804'],['bc-5.trace.gz','bc-5'],['bfs-14.trace.gz','bfs-14'],['cc-6.trace.gz','cc-6'],['pr-3.trace.gz','pr-3'],['sssp-5.trace.gz','sssp-5']
+    # ['403.gcc-17B.champsimtrace.xz', '403_17'],
+    # ['410.bwaves-1963B.champsimtrace.xz', '410_1963'],
+    # ['429.mcf-51B.champsimtrace.xz', '429_51'],
+
+    # ['436.cactusADM-1804B.champsimtrace.xz', '436_1804'],  # comma added here
+    # ['437.leslie3d-271B.champsimtrace.xz', '437_271'],
+
+    # ['450.soplex-92B.champsimtrace.xz','450_92'],
+    # ['462.libquantum-714B.champsimtrace.xz','462_714'],
+    # ['654.roms_s-523B.champsimtrace.xz','654_s523'],
+    ['bc-5.trace.gz','bc-5'],
+    ['bfs-14.trace.gz','bfs-14'],
+    ['cc-5.trace.gz','cc-5'],
+    ['pr-3.trace.gz','pr-3'],
+    ['sssp-14.trace.gz','sssp-14']
 ]
+
 workloads_spec17 = [
     ['602.gcc_s-734B.champsimtrace.xz', '602_734'], ['602.gcc_s-1850B.champsimtrace.xz', '602_1850'], ['602.gcc_s-2226B.champsimtrace.xz', '602_2226'],
     ['603.bwaves_s-1740B.champsimtrace.xz', '603_1740'], ['603.bwaves_s-2609B.champsimtrace.xz', '603_2609'], ['603.bwaves_s-2931B.champsimtrace.xz', '603_2931'],
