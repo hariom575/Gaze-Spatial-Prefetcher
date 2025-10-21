@@ -9,9 +9,11 @@ print('Using results from run_single_core_gaze_analysis.py and run_single_core_m
 # -------------------------- prefetchers list --------------------------
 prefetchers = [
     'no',
-    '1offset', '2offset', '3offset', '4offset',
-    'gaze_analysis_pht', 'gaze_analysis_pht4ss', 'gaze_analysis_sm4ss',
-    'gaze', 'gaze_dynamic_dc_sm4ss'
+    '1offset',
+    'gaze_analysis_pht4ss',
+    'gaze_analysis_sm4ss',
+    'gaze',
+    'gaze_dynamic_dc_sm4ss'
 ]
 prefixes = {p: 'v00' for p in prefetchers}
 
@@ -30,18 +32,10 @@ metrics = {
     'L2 Prefetch Useless': l2_pf_useless
 }
 
-# -------------------------- select one trace --------------------------
-trace_name = workloads_simplified[0]  # first trace
-print(f"Plotting metrics for trace: {trace_name}")
-
 # -------------------------- labels & colors --------------------------
 prefetcher_dict.update({
     'no': 'No Prefetching',
     '1offset': '1-Offset',
-    '2offset': '2-Offset',
-    '3offset': '3-Offset',
-    '4offset': '4-Offset',
-    'gaze_analysis_pht': 'Gaze-PHT',
     'gaze_analysis_pht4ss': 'Gaze-PHT4SS',
     'gaze_analysis_sm4ss': 'Gaze-SM4SS',
     'gaze': 'Full Gaze',
@@ -50,64 +44,86 @@ prefetcher_dict.update({
 linecolor_dict.update({
     'no': '#aaaaaa',
     '1offset': '#86b5a1',
-    '2offset': '#6aa98c',
-    '3offset': '#529377',
-    '4offset': '#3a7d62',
-    'gaze_analysis_pht': '#ac667e',
     'gaze_analysis_pht4ss': '#b87c90',
     'gaze_analysis_sm4ss': '#c692a2',
     'gaze': '#e47159',
     'gaze_dynamic_dc_sm4ss': '#d83f3f'
 })
 
+# -------------------------- workload name mapping --------------------------
+workloads_name_map = {
+    '403_17': 'gcc-17',
+    '410_1963': 'bwaves-1963',
+    '436_1804': 'cactusADM-1804',
+    '437_271': 'leslie3d-271',
+    '450_92': 'soplex-92',
+    '462_714': 'libquantum-714',
+    '654_s523': 'roms_s-523',
+    'bc-5': 'BC-5',
+    'bfs-14': 'BFS-14',
+    'cc-5': 'CC-5',
+    'pr-3': 'PR-3',
+    'sssp-14': 'SSSP-14'
+}
+
 # -------------------------- plot setup --------------------------
 os.makedirs('fig', exist_ok=True)
 
-def plot_bar(metric_name, values, ylabel, filename_suffix, highlight='gaze_dynamic_dc_sm4ss'):
-    """Generic bar plot generator"""
-    labels = [prefetcher_dict[p] for p in prefetchers]
-    colors = [linecolor_dict[p] for p in prefetchers]
-    x = np.arange(len(prefetchers))
-    fig, ax = plt.subplots(figsize=(6, 3))
-    bars = ax.bar(x, values, color=colors, width=0.5, edgecolor='black', linewidth=0.25)
-    
-    for i, v in enumerate(values):
-        ax.text(x[i], v + 0.01 * max(values), f"{v:.2f}", ha='center', va='bottom', fontsize=6,
-                fontweight='bold' if prefetchers[i] == highlight else 'normal')
-    
-    ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=6, rotation=25, ha='right')
-    ax.set_ylabel(ylabel, fontsize=7)
-    ax.set_title(f"{metric_name} for {trace_name}", fontsize=8, fontweight='bold', pad=4)
+def plot_metric_across_workloads(metric_name, metric_dict, prefetchers, highlight='gaze_dynamic_dc_sm4ss'):
+    """
+    Plot a metric across all workloads in a single graph.
+    """
+    workloads = list(metric_dict['no'].keys())
+    num_workloads = len(workloads)
+    x = np.arange(num_workloads)
+    width = 0.12  # width of each bar
+
+    fig, ax = plt.subplots(figsize=(10, 4))
+
+    for i, p in enumerate(prefetchers):
+        # Using first core; modify if averaging across cores is needed
+        values = [metric_dict[p][w][0] for w in workloads]
+        ax.bar(x + i*width, values, width=width, label=prefetcher_dict.get(p, p),
+               color=linecolor_dict.get(p, '#333333'))
+
+    # x-axis labels
+    labels = [workloads_name_map.get(w, w) for w in workloads]
+    ax.set_xticks(x + width*(len(prefetchers)-1)/2)
+    ax.set_xticklabels(labels, rotation=30, ha='right', fontsize=8)
+
+    ax.set_ylabel(metric_name)
+    ax.set_title(f"{metric_name} Across All Workloads", fontsize=10, fontweight='bold')
     ax.grid(axis='y', linestyle='--', linewidth=0.3, alpha=0.4)
-    
+    ax.legend(fontsize=6, ncol=2)
+
     plt.tight_layout()
-    plt.savefig(f'fig/{trace_name}_{filename_suffix}.pdf', dpi=600, bbox_inches='tight')
+    plt.savefig(f'fig/{metric_name.replace(" ", "_")}_all_workloads.pdf', dpi=600)
     plt.show()
 
-
-# -------------------------- plot each raw metric --------------------------
+# -------------------------- plot all raw metrics --------------------------
 for metric_name, metric_dict in metrics.items():
     eliminate_invalid_values(metric_dict, prefetchers, workloads_simplified)
-    values = [metric_dict[p][trace_name][0] for p in prefetchers]
-    plot_bar(metric_name, values, metric_name, metric_name.replace(" ", "_"))
+    plot_metric_across_workloads(metric_name, metric_dict, prefetchers)
 
-
-# -------------------------- additional metric 1: IPC Speedup --------------------------
+# -------------------------- IPC Speedup --------------------------
 eliminate_invalid_values(ipc, prefetchers, workloads_simplified)
-ipc_speedup = [ipc[p][trace_name][0] / ipc['no'][trace_name][0] for p in prefetchers]
-plot_bar('IPC Speedup', ipc_speedup, 'Speedup over No Prefetching', 'IPC_Speedup')
+ipc_speedup = {p: {} for p in prefetchers}
+for p in prefetchers:
+    for w in workloads_simplified:
+        ipc_speedup[p][w] = [ipc[p][w][0] / ipc['no'][w][0]]
 
+plot_metric_across_workloads('IPC Speedup', ipc_speedup, prefetchers)
 
-# -------------------------- additional metric 2: L2 Prefetch Accuracy --------------------------
+# -------------------------- L2 Prefetch Accuracy --------------------------
 eliminate_invalid_values(l2_pf_useful, prefetchers, workloads_simplified)
 eliminate_invalid_values(l2_pf_useless, prefetchers, workloads_simplified)
 
-l2_accuracy = []
+l2_accuracy = {p: {} for p in prefetchers}
 for p in prefetchers:
-    useful = l2_pf_useful[p][trace_name][0]
-    useless = l2_pf_useless[p][trace_name][0]
-    acc = useful / (useful + useless) if (useful + useless) > 0 else 0
-    l2_accuracy.append(acc)
+    for w in workloads_simplified:
+        useful = l2_pf_useful[p][w][0]
+        useless = l2_pf_useless[p][w][0]
+        acc = useful / (useful + useless) if (useful + useless) > 0 else 0
+        l2_accuracy[p][w] = [acc]
 
-plot_bar('L2 Prefetch Accuracy', l2_accuracy, 'Accuracy (Useful / Total)', 'L2_Prefetch_Accuracy')
+plot_metric_across_workloads('L2 Prefetch Accuracy', l2_accuracy, prefetchers)

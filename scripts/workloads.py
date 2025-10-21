@@ -29,11 +29,11 @@ workload_spec_single = [
     ['450.soplex-92B.champsimtrace.xz','450_92'],
     ['462.libquantum-714B.champsimtrace.xz','462_714'],
     ['654.roms_s-523B.champsimtrace.xz','654_s523'],
-    # ['bc-5.trace.gz','bc-5'],
-    # ['bfs-14.trace.gz','bfs-14'],
-    # ['cc-5.trace.gz','cc-5'],
-    # ['pr-3.trace.gz','pr-3'],
-    # ['sssp-14.trace.gz','sssp-14']
+    ['bc-5.trace.gz','bc-5'],
+    ['bfs-14.trace.gz','bfs-14'],
+    ['cc-5.trace.gz','cc-5'],
+    ['pr-3.trace.gz','pr-3'],
+    ['sssp-14.trace.gz','sssp-14'],
 ]
 
 workloads_spec17 = [

@@ -32,10 +32,10 @@ def valid_log(str):
         return True
     
 
-def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'homo'):
+def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type='homo'):
     
     if mix_type not in ['hete', 'homo', 'both']:
-        print('Mix type can be [\'hete\', \'homo\', \'both\']. The default value is \'homo\'.')
+        print("Mix type can be ['hete', 'homo', 'both']. The default value is 'homo'.")
         exit(0)
         
     workloads_hete = None
@@ -55,12 +55,12 @@ def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'hom
     for prefetcher in prefetchers:
         json_file_lists[prefetcher] = []
         
-        if num_cores == 1: # single_core
+        if num_cores == 1:  # single_core
             for workload in workloads:
                 json_file_lists[prefetcher].append(workload[1])
             for i in range(len(json_file_lists[prefetcher])):
                 json_file_lists[prefetcher][i] = f'{prefixes[prefetcher]}-{json_file_lists[prefetcher][i]}.json'
-        else: # multi_core
+        else:  # multi_core
             json_file_list_homo, json_file_list_hete = [], []
             for workload in workloads:
                 json_file_list_homo.append(workload[1])
@@ -68,8 +68,6 @@ def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'hom
                 json_file_list_homo[i] = f'{prefixes[prefetcher]}-{json_file_list_homo[i]}.json'
             
             if mix_type in ['hete', 'both']:
-                trace_list_hete = None
-                # if num_cores == 2:
                 trace_list_hete = workloads_hete
                 for trace in trace_list_hete:
                     file_name = f'{prefixes[prefetcher]}-'
@@ -86,10 +84,9 @@ def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'hom
                 json_file_lists[prefetcher] = json_file_list_homo
             elif mix_type == 'hete':
                 json_file_lists[prefetcher] = json_file_list_hete
-            # print(file_lists)
             
     for file in json_file_lists['no']: 
-        workload = file[4:-5] # v00-{simplified_workload_name}.json
+        workload = file[4:-5]  # v00-{simplified_workload_name}.json
         workloads_simplified.append(workload)
     
     for d in [ipc, cycles, llc_load_miss, l1_pf_late, l1_pf_useful, l1_pf_useless, l2_pf_useful, l2_pf_useless]:
@@ -99,20 +96,32 @@ def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'hom
                 d[prefetcher][workload] = [None for i in range(num_cores)]
     
     for prefetcher in prefetchers:
-        # print(prefetcher)
         for file in json_file_lists[prefetcher]:
             workload = file[4:-5]
-            # print(file)
             json_file = f'{json_root_path}{prefetcher}/{file}'
             log_file = f'{log_root_path}{prefetcher}/{file[0:-4]}log'
+            
+            print(f"[DEBUG] Processing prefetcher '{prefetcher}' workload '{workload}'")
+            print(f"[DEBUG] JSON path: {json_file}")
+            print(f"[DEBUG] Log path: {log_file}")
+            
             log_str = load_file_as_str(log_file)
             
-            if(valid_log(log_str)):
+            if valid_log(log_str):
                 json_str = load_file_as_str(json_file)
-                # print(json_file)
-                json_obj = str2json(json_str)
+                
+                if not json_str.strip():
+                    print(f"[WARNING] JSON file '{json_file}' is empty!")
+                    continue
+                
+                try:
+                    json_obj = str2json(json_str)
+                except Exception as e:
+                    print(f"[ERROR] Failed to parse JSON file '{json_file}': {e}")
+                    continue
+                
                 for i in range(num_cores):
-                    ipc[prefetcher][workload][i] = json_obj[0]['roi']['cores'][i]['instructions']/json_obj[0]['roi']['cores'][i]['cycles']
+                    ipc[prefetcher][workload][i] = json_obj[0]['roi']['cores'][i]['instructions'] / json_obj[0]['roi']['cores'][i]['cycles']
                     cycles[prefetcher][workload][i] = json_obj[0]['roi']['cores'][i]['cycles']
                     l1_pf_useful[prefetcher][workload][i] = json_obj[0]['roi']['cpu'+str(i)+'_L1D']["prefetch useful"]
                     l1_pf_useless[prefetcher][workload][i] = json_obj[0]['roi']['cpu'+str(i)+'_L1D']["prefetch useless"]
@@ -121,9 +130,10 @@ def get_raw_results(num_cores, prefetchers, prefixes, workloads, mix_type = 'hom
                     l2_pf_useful[prefetcher][workload][i] = json_obj[0]['roi']['cpu'+str(i)+'_L2C']['pf_useful_at_l2_from_l1']
                     l2_pf_useless[prefetcher][workload][i] = json_obj[0]['roi']['cpu'+str(i)+'_L2C']['pf_useless_at_l2_from_l1']
             else:
-                print(prefetcher, 'Invalid File', file)
+                print(f"[WARNING] {prefetcher} Invalid log file: {log_file}")
                             
     return ipc, cycles, llc_load_miss, l1_pf_late, l1_pf_useful, l1_pf_useless, l2_pf_useful, l2_pf_useless, workloads_simplified
+
 
 
 def calculate_l2_accuracy(l1_pf_useful, l1_pf_useless, l2_pf_useful, l2_pf_useless, prefetchers, workloads, num_cores):
