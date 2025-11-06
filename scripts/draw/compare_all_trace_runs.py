@@ -31,13 +31,15 @@ prefetcher_dict.update({
     'gaze_dynamic_dc_sm4ss': 'Gaze-DynDCSM-4SS'
 })
 linecolor_dict.update({
-    'no': '#aaaaaa',
-    '1offset': '#86b5a1',
-    'gaze_analysis_pht4ss': '#b87c90',
-    'gaze_analysis_sm4ss': '#c692a2',
-    'gaze': '#e47159',
-    'gaze_dynamic_dc_sm4ss': '#d83f3f'
+    'no': '#aaaaaa',                     # Grey
+    '1offset': '#86b5a1',                # Muted green
+    'gaze_analysis_pht4ss': '#b87c90',   # Pinkish
+    'gaze_analysis_sm4ss': '#c692a2',    # Light rose
+    'gaze': '#0057b7',                   # Deep blue for full gaze
+    'gaze_dynamic_dc_sm4ss': '#ff4500'   # Bright orange-red for dynamic
 })
+
+
 
 # -------------------------- workload name mapping --------------------------
 workloads_name_map = {
@@ -52,7 +54,8 @@ workloads_name_map = {
     'bfs-14': 'BFS-14',
     'cc-5': 'CC-5',
     'pr-3': 'PR-3',
-    'sssp-14': 'SSSP-14'
+    'sssp-14': 'SSSP-14',
+    '429_51':'mcf-51'
 }
 
 # -------------------------- plot setup --------------------------
@@ -110,3 +113,18 @@ for p in prefetchers:
         l2_accuracy[p][w] = [acc]
 
 plot_metric_across_workloads('L2 Prefetch Accuracy', l2_accuracy, prefetchers)
+
+# -------------------------- L2 Prefetch Coverage --------------------------
+eliminate_invalid_values(l2_pf_useful, prefetchers, workloads_simplified)
+eliminate_invalid_values(llc_load_miss, prefetchers, workloads_simplified)
+
+l2_coverage = {p: {} for p in prefetchers}
+for p in prefetchers:
+    for w in workloads_simplified:
+        useful = l2_pf_useful[p][w][0]
+        demand_miss = llc_load_miss[p][w][0]
+        cov = useful / (useful + demand_miss) if (useful + demand_miss) > 0 else 0
+        l2_coverage[p][w] = [cov]
+
+plot_metric_across_workloads('L2 Prefetch Coverage', l2_coverage, prefetchers)
+

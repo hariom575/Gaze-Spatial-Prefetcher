@@ -17,7 +17,7 @@
 #include "ptw.h"
 
 #include <numeric>
-
+#include "ptw_registry.h"
 #include "champsim.h"
 #include "champsim_constants.h"
 #include "instruction.h"
@@ -35,6 +35,7 @@ PageTableWalker::PageTableWalker(std::string v1, uint32_t cpu, double freq_scale
         auto shamt = _vmem.shamt(level--);
         pscl.emplace_back(x.first, x.second, pscl_indexer{shamt}, pscl_indexer{shamt});
     }
+    champsim::ptw_registry::register_ptw(this);
 }
 
 bool PageTableWalker::handle_read(const PACKET& handle_pkt) {
@@ -158,6 +159,10 @@ bool PageTableWalker::add_rq(const PACKET& packet) {
     return true;
 }
 
+void PageTableWalker::register_page_size_callback(page_size_cb_t cb){
+    page_size_callbacks_.push_back(std::move(cb));
+}
+
 void PageTableWalker::return_data(const PACKET& packet) {
     // std::cout << "PageTableWalker" << std::endl;
     for (auto& mshr_entry : MSHR) {
@@ -178,6 +183,17 @@ void PageTableWalker::return_data(const PACKET& packet) {
                 std::cout << " occupancy: " << get_occupancy(0, mshr_entry.address);
                 std::cout << " event: " << mshr_entry.event_cycle << " current: " << current_cycle << std::endl;
             }
+            // ----------------- PAGE-SIZE NOTIFICATION -----------------
+            // Use VirtualMemory's configured page size as the page size for this mapping.
+            // Currently VirtualMemory::pte_page_size is the global page size (from config JSON).
+            uint32_t page_size_bytes = static_cast<uint32_t>(vmem.pte_page_size);
+
+            // Compute page-aligned base and notify registered callbacks
+            uint64_t page_base = (mshr_entry.v_address / page_size_bytes) * static_cast<uint64_t>(page_size_bytes);
+            for (auto &cb : page_size_callbacks_) {
+                if (cb) cb(page_base, page_size_bytes);
+            }
+            // ----------------- END PAGE-SIZE NOTIFICATION -----------------
         }
     }
 

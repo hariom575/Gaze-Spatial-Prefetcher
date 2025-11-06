@@ -9,7 +9,7 @@ def main():
     
     print('Making prefetchers used to generate the results of fig. 1, 6, 7, 8, 11, 12')
     
-    for prefetcher in ['no', 'ip_stride', 'spp_ppf', 'ipcp_l1', 'vberti', 'sms', 'bingo', 'dspatch', 'pmp', 'gaze', 'pc', '1offset']:
+    for prefetcher in ['gaze']:
         make_1core(prefetcher)
     
     print('Done.')

@@ -19,6 +19,8 @@
 
 #include <deque>
 #include <string>
+#include <functional>
+#include <vector>
 
 #include "memory_class.h"
 #include "operable.h"
@@ -57,8 +59,11 @@ public:
 
     PageTableWalker(std::string v1, uint32_t cpu, double freq_scale, std::vector<std::pair<std::size_t, std::size_t>> pscl_dims, uint32_t v10, uint32_t v11,
                     uint32_t v12, uint32_t v13, uint64_t latency, MemoryRequestConsumer* ll, VirtualMemory& _vmem);
-
     // functions
+    // Page-size notification callback:
+    using page_size_cb_t = std::function<void(uint64_t /*page_base*/, uint32_t /*page_size_bytes*/)>;
+    void register_page_size_callback(page_size_cb_t cb);
+
     bool add_rq(const PACKET& packet) override final;
     bool add_wq(const PACKET&) override final { assert(0); }
     bool add_pq(const PACKET&) override final { assert(0); }
@@ -75,6 +80,7 @@ public:
     std::size_t get_size(uint8_t queue_type, uint64_t address) override final;
 
     void print_deadlock() override final;
+    std::vector<page_size_cb_t> page_size_callbacks_;
 };
 
 #endif
