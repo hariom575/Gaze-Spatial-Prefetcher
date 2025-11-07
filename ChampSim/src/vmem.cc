@@ -31,6 +31,10 @@ VirtualMemory::VirtualMemory(uint64_t page_table_page_size, std::size_t page_tab
     assert(last_ppage > VMEM_RESERVE_CAPACITY);
 
     std::cout << "Available num physical pages: " << available_ppages() << std::endl;
+    // Initialize the active page size to the configured default (compile-time PAGE_SIZE is still available).
+    current_page_size = page_table_page_size;
+    // If you want dynamic mode off by default, keep dynamic_mode=false; caller can enable it.
+    dynamic_mode = false;
     auto required_bits = champsim::lg2(last_ppage);
     if (required_bits > 64)
         std::cout << "WARNING: virtual memory configuration would require " << required_bits << " bits of addressing." << std::endl;
@@ -38,11 +42,15 @@ VirtualMemory::VirtualMemory(uint64_t page_table_page_size, std::size_t page_tab
         std::cout << "WARNING: physical memory size is smaller than virtual memory size" << std::endl;
 }
 
-uint64_t VirtualMemory::shamt(std::size_t level) const { return LOG2_PAGE_SIZE + champsim::lg2(pte_page_size / PTE_BYTES) * (level - 1); }
-
-uint64_t VirtualMemory::get_offset(uint64_t vaddr, std::size_t level) const {
-    return (vaddr >> shamt(level)) & champsim::bitmask(champsim::lg2(pte_page_size / PTE_BYTES));
-}
+uint64_t VirtualMemory::shamt(std::size_t level) const {
+        // The shift amount: log2(active page size) + log2(PTE entries per page)*(level-1)
+        uint64_t log2_active_page = champsim::lg2(current_page_size);
+        return log2_active_page + champsim::lg2(pte_page_size / PTE_BYTES) * (level - 1);
+    }
+    
+    uint64_t VirtualMemory::get_offset(uint64_t vaddr, std::size_t level) const {
+        return (vaddr >> shamt(level)) & champsim::bitmask(champsim::lg2(pte_page_size / PTE_BYTES));
+    }
 
 uint64_t VirtualMemory::ppage_front() const {
     assert(available_ppages() > 0);

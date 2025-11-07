@@ -15,9 +15,9 @@
  */
 
 #include "ptw.h"
-
+#include <iostream>
 #include <numeric>
-
+#include "ptw_registry.h"
 #include "champsim.h"
 #include "champsim_constants.h"
 #include "instruction.h"
@@ -35,6 +35,7 @@ PageTableWalker::PageTableWalker(std::string v1, uint32_t cpu, double freq_scale
         auto shamt = _vmem.shamt(level--);
         pscl.emplace_back(x.first, x.second, pscl_indexer{shamt}, pscl_indexer{shamt});
     }
+    champsim::ptw_registry::register_ptw(this);
 }
 
 bool PageTableWalker::handle_read(const PACKET& handle_pkt) {
@@ -125,6 +126,12 @@ bool PageTableWalker::step_translation(uint64_t addr, std::size_t transl_level, 
 }
 
 void PageTableWalker::operate() {
+    static uint64_t cycle_counter = 0;
+    cycle_counter++;
+
+    // 🔄 Dynamic page size switching
+    if (dynamic_page_mode && cycle_counter % switch_interval == 0)
+        toggle_page_size(cycle_counter);
     auto fill_this_cycle = MAX_FILL;
     while (fill_this_cycle > 0 && !std::empty(MSHR) && MSHR.front().event_cycle <= current_cycle) {
         auto success = handle_fill(MSHR.front());
@@ -212,4 +219,28 @@ void PageTableWalker::print_deadlock() {
     } else {
         std::cout << NAME << " MSHR empty" << std::endl;
     }
+}
+void PageTableWalker::register_page_size_callback(std::function<void(uint64_t, uint32_t)> cb)
+{
+    page_size_callbacks.push_back(std:: move(cb));
+}
+void PageTableWalker::toggle_page_size(uint64_t cycle)
+{
+    if (!dynamic_page_mode)
+        return;
+
+    // Toggle between 4KB and 2MB
+    current_page_size = (current_page_size == 4096) ? (2 * 1024 * 1024) : 4096;
+
+    std::cout << "[PTW] 🔁 Switched page size to "
+              << (current_page_size / 1024) << " KB at cycle "
+              << cycle << std::endl;
+
+    // Notify all registered callbacks (e.g., Gaze)
+    for (auto& cb : page_size_callbacks)
+    {
+        if (cb)
+            cb(0, current_page_size);
+    }
+    vmem.update_page_size(current_page_size);
 }

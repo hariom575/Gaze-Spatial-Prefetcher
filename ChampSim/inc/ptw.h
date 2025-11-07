@@ -44,6 +44,18 @@ public:
     const uint32_t RQ_SIZE, MSHR_SIZE;
     const long int MAX_READ, MAX_FILL;
     const uint64_t HIT_LATENCY;
+    bool dynamic_page_mode = true;           // Enable runtime switching
+    uint64_t switch_interval = 500000;       // Cycles between switches
+    uint32_t current_page_size = 4096;       // Current simulated page size
+
+    // Callback registry for page-size change notifications
+    std::vector<std::function<void(uint64_t, uint32_t)>> page_size_callbacks;
+
+    // Register a callback (e.g., Gaze prefetcher) to be notified when page size changes
+    void register_page_size_callback(std::function<void(uint64_t, uint32_t)> cb);
+
+    // Toggle the current page size (called every N cycles)
+    void toggle_page_size(uint64_t cycle);
 
     std::deque<PACKET> RQ;
     std::deque<PACKET> MSHR;

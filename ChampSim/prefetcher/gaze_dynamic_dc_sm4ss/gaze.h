@@ -7,6 +7,11 @@
 #include <stdint.h>
 #include <random>
 #include <deque>
+#include <unordered_map>
+#include <vector>
+#include <functional>
+#include "ptw.h"
+#include <memory>
 
 namespace gaze {
 
@@ -176,11 +181,16 @@ private:
 
     FilterTable ft;
     AccumulateTable at;
-    PatternTable pt;
+    // PatternTable pt;
+    PatternTable pt_default;
     PrefetchBuffer pb;
+    std::unordered_map<uint32_t, std::unique_ptr<PatternTable>> pt_map;
+    std::vector<uint32_t> supported_page_sizes_;
+    std::unordered_map<uint64_t, uint32_t> page_size_map_;
 
     PatternTable::Entry* find_in_pt(uint64_t trigger, uint64_t second, uint64_t pc, uint64_t region_num);
     void insert_in_pt(const AccumulateTable::Entry& entry, uint64_t region_num);
+    PatternTable* get_pt_for_vaddr(uint64_t vaddr);
 
 public:
     int global_level = 0;
@@ -188,6 +198,12 @@ public:
 
     Gaze(int ft_size, int ft_ways, int at_size, int at_ways, int pt_size, int pt_ways, int pb_size, int pb_ways, int cpu);
     Gaze();
+    Gaze(const Gaze&) = delete;
+    Gaze& operator=(const Gaze&) = delete;
+
+    // Allow moves (optional but useful)
+    Gaze(Gaze&&) = default;
+    Gaze& operator=(Gaze&&) = default;
     void set_warmup(bool warmup);
 
     void access(uint64_t block_num, uint64_t ip, CACHE* cache);
@@ -200,6 +216,18 @@ public:
     void tune_stride_degree(CACHE* cache);
 
     void log();
+     // Notify from PTW (called via callback)
+    void notify_page_size(uint64_t page_base_vaddr, uint32_t page_size_bytes);
+
+     // Attach to PTW so the prefetcher receives page-size notifications.
+     void attach_ptw(PageTableWalker* ptw);
+ 
+     // Query helper: returns page size in bytes for vaddr, or 0 if unknown.
+     uint32_t get_page_size_hint(uint64_t vaddr);
+ 
+     // Initialize list of supported region/page sizes (e.g., {4096, 16384}) - lightweight
+     // This constructs one PHT per page-size with a size scaled from PT_SIZE.
+     void init_multi_phts(const std::vector<uint32_t>& page_sizes);
 };
 
 } // namespace gaze

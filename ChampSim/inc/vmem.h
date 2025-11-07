@@ -16,7 +16,7 @@
 
 #ifndef VMEM_H
 #define VMEM_H
-
+#include<iostream>
 #include <cstdint>
 #include <map>
 
@@ -41,6 +41,8 @@ private:
 
     uint64_t ppage_front() const;
     void ppage_pop();
+    uint64_t current_page_size = 0; // Active page size (bytes)
+    bool dynamic_mode = false;
 
 public:
     const uint64_t minor_fault_penalty;
@@ -54,6 +56,23 @@ public:
     std::size_t available_ppages() const;
     std::pair<uint64_t, uint64_t> va_to_pa(uint32_t cpu_num, uint64_t vaddr);
     std::pair<uint64_t, uint64_t> get_pte_pa(uint32_t cpu_num, uint64_t vaddr, std::size_t level);
+    // Enable or disable dynamic page sizing
+    void enable_dynamic_page_mode(bool enable) { dynamic_mode = enable; }
+
+    // Called by PTW or other modules to update page size dynamically
+    void update_page_size(uint64_t new_page_size)
+    {
+        if (dynamic_mode && new_page_size != current_page_size)
+        {
+            current_page_size = new_page_size;
+            std::cout << "[VMEM] ⚙️ Updated page size to "
+                      << (current_page_size / 1024) << " KB\n";
+        }
+    }
+
+    // Returns the current simulated page size
+    uint64_t get_current_page_size() const { return current_page_size; }
+
 };
 
 #endif
