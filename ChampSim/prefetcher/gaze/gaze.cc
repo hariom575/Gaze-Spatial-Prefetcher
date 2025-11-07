@@ -1,9 +1,19 @@
 #include "gaze.h"
 #include "cache.h"
-#include "ptw_registry.h"
+
 #include <assert.h>
-#include <algorithm>
-#include <iostream>
+
+/*
+ * Gaze into the Pattern: Characterizing Spatial Patterns with Internal Temporal Correlations for Hardware Prefetching
+ *
+ * To appear in 31st IEEE International Symposium on High-Performance Computer Architecture (HPCA 2025),
+ * 3/1/2025-3/5/2025, Las Vegas, NV, USA
+ *
+ * @Authors: Zixiao Chen, Chentao Wu, Yunfei Gu, Ranhao Jia, Jie Li, and Minyi Guo
+ * @Manteiners: Zixiao Chen
+ * @Email: chen_zx@sjtu.edu.cn
+ * @Date: 12/02/2024
+ */
 
 static std::vector<gaze::Gaze> prefetchers;
 
@@ -127,7 +137,7 @@ void AccumulateTable::turn_off_stride_prefetch() {
 // ------------------------- PHT functions ------------------------- //
 PatternTable::PatternTable(int size, int num_ways) :
     Super(size, num_ways) {
-    std::cout << "Pattern Table index_len: " << Super::index_len << " size=" << size << std::endl;
+    std::cout << "Pattern Table index_len: " << Super::index_len << std::endl;
 }
 
 void PatternTable::insert(uint64_t trigger, uint64_t second, uint64_t pc, uint64_t region_num, std::vector<bool> pattern) {
@@ -205,7 +215,7 @@ uint64_t PatternTable::build_key(uint64_t trigger, uint64_t second, uint64_t pc,
 }
 
 // ------------------------- PB functions ------------------------- //
-PrefetchBuffer::PrefetchBuffer(int size, int pattern_len, int debug_level, int num_ways) :
+PrefetchBuffer::PrefetchBuffer(int size, int pattern_len, int debug_level = 0, int num_ways = 16) :
     Super(size, num_ways), pattern_len(pattern_len) {
 }
 
@@ -220,8 +230,8 @@ void PrefetchBuffer::insert(uint64_t region_num, std::vector<int> pattern, uint6
             for (int i = 0; i < NUM_BLOCKS; i++) {
                 if (pattern[i] == PF_FILL_L1) {
                     if (entry->data.pattern[i] != PF_FILL_L1) {
-                        if (entry->data.pf_metadata[i] == 2) {
-                            entry->data.pf_metadata[i] = 3;
+                        if (entry->data.pf_metadata[i] == 2) { 
+                            entry->data.pf_metadata[i] = 3;    
                         }
                     }
                     entry->data.pattern[i] = PF_FILL_L1;
@@ -298,9 +308,8 @@ uint64_t PrefetchBuffer::build_key(uint64_t region_num) {
 
 // ------------------------- Gaze functions ------------------------- //
 
-Gaze::Gaze(int ft_size, int ft_ways, int at_size, int at_ways, int pt_size, int pt_ways, int pb_size, int pb_ways, int cpu /*=0*/) :
-    ft(ft_size, ft_ways), at(at_size, at_ways), pt_default(pt_size, pt_ways), pb(pb_size, gaze::NUM_BLOCKS, 0, pb_ways)
-    , cpu(cpu) {
+Gaze::Gaze(int ft_size, int ft_ways, int at_size, int at_ways, int pt_size, int pt_ways, int pb_size, int pb_ways, int cpu = 0) :
+    ft(ft_size, ft_ways), at(at_size, at_ways), pt(pt_size, pt_ways), pb(pb_size, pb_ways), cpu(cpu) {
 }
 
 void Gaze::access(uint64_t block_num, uint64_t pc, CACHE* cache) {
@@ -332,10 +341,7 @@ void Gaze::access(uint64_t block_num, uint64_t pc, CACHE* cache) {
             ft.insert(region_num, region_offset, pc);
             return;
         } else if (entry->data.trigger_offset != region_offset) { // SECOND OFFSET
-            // 1. find pattern: we need to query the PHT corresponding to the page size.
-            // compute a representative virtual address for the region (region base)
-            uint64_t region_vaddr = (region_num << LOG2_REGION_SIZE);
-
+            // 1. find pattern
             auto pt_entry = find_in_pt(entry->data.trigger_offset, region_offset, pc, region_num);
             // pattern empty?
             bool pattern_empty = (!pt_entry) || (2 == std::count_if(pt_entry->data.pattern.begin(), pt_entry->data.pattern.end(), [](auto& x) { return x != 0; }));
@@ -378,13 +384,9 @@ void Gaze::log() {
     std::cout << this->at.log();
     std::cout << "Accumulation table end" << std::endl;
 
-    std::cout << "Pattern table(s) begin" << std::dec << std::endl;
-    // log default and mapped tables
-    std::cout << "Default PT (4KB) -> " << this->pt_default.log() << std::endl;
-    for (auto &kv : pt_map) {
-        std::cout << "PHT for page_size=" << kv.first << " -> " << kv.second->log() << std::endl;
-    }
-    std::cout << "Pattern table(s) end" << std::endl;
+    std::cout << "Pattern table begin" << std::dec << std::endl;
+    std::cout << this->pt.log();
+    std::cout << "Pattern table end" << std::endl;
 
     std::cout << "Prefetch buffer begin" << std::dec << std::endl;
     std::cout << this->pb.log();
@@ -394,115 +396,23 @@ void Gaze::log() {
 void Gaze::tune_stride_degree(CACHE* cache) {}
 
 PatternTable::Entry* Gaze::find_in_pt(uint64_t trigger, uint64_t second, uint64_t pc, uint64_t region_num) {
-    // Determine virtual address (region base) to query page-size hint
-    uint64_t vaddr = (region_num << LOG2_REGION_SIZE);
-    PatternTable* pt = get_pt_for_vaddr(vaddr);
-    if (!pt) {
-        // fallback to default
-        pt = &pt_default;
+    auto entry = pt.find(trigger, second, pc, region_num);
+    if (!entry) {
+        return entry;
+    } else {
+        return entry;
     }
-    return pt->find(trigger, second, pc, region_num);
 }
 
 void Gaze::insert_in_pt(const AccumulateTable::Entry& entry, uint64_t region_num) {
-    uint64_t vaddr = (region_num << LOG2_REGION_SIZE);
-    PatternTable* pt = get_pt_for_vaddr(vaddr);
-    if (!pt) {
-        pt = &pt_default;
-    }
     uint64_t trigger = entry.data.trigger_offset, second = entry.data.second_offset, pc = entry.data.pc;
-    pt->insert(trigger, second, pc, region_num, entry.data.pattern);
+    pt.insert(trigger, second, pc, region_num, entry.data.pattern);
 }
 
-// ------------------------- PTW integration helpers ------------------------- //
-
-// Register the page size reported by PTW.
-void Gaze::notify_page_size(uint64_t page_base_vaddr, uint32_t page_size_bytes)
-{
-    page_size_map_[page_base_vaddr] = page_size_bytes;
-    // optional debug print
-    // static int cnt = 0; if (cnt++ < 20) std::cout << "[GAZE] PTW notify: base=0x" << std::hex << page_base_vaddr << " size=" << page_size_bytes << std::dec << "\n";
+void Gaze::set_warmup(bool warmup) {
+    this->warmup = warmup;
+    this->pb.warmup = warmup;
 }
-
-// Attach to PTW: register callback
-void Gaze::attach_ptw(PageTableWalker* ptw)
-{
-    if (!ptw) return;
-    ptw->register_page_size_callback([this](uint64_t base, uint32_t psize) {
-        this->notify_page_size(base, psize);
-    });
-}
-
-// Return page size hint (bytes) for virtual address, or 0 if unknown.
-// Looks up by page-base aligned to candidate sizes (if any were provided).
-uint32_t Gaze::get_page_size_hint(uint64_t vaddr)
-{
-    // if supported_page_sizes_ empty, try default 4KB base lookup; otherwise try sizes in supported_page_sizes_
-    if (supported_page_sizes_.empty()) {
-        uint64_t base4 = (vaddr / static_cast<uint64_t>(PAGE_SIZE)) * static_cast<uint64_t>(PAGE_SIZE);
-        auto it = page_size_map_.find(base4);
-        if (it != page_size_map_.end()) return it->second;
-        return 0;
-    }
-
-    for (uint32_t ps : supported_page_sizes_) {
-        uint64_t base = (vaddr / static_cast<uint64_t>(ps)) * static_cast<uint64_t>(ps);
-        auto it = page_size_map_.find(base);
-        if (it != page_size_map_.end()) return it->second;
-    }
-    return 0;
-}
-
-// Initialize supported page sizes and construct a PatternTable per page-size.
-// For each page-size, we compute a PT size = base PT_SIZE * multiplier (page_size/REGION_SIZE), capped.
-void Gaze::init_multi_phts(const std::vector<uint32_t>& page_sizes)
-{
-    supported_page_sizes_.clear();
-    supported_page_sizes_ = page_sizes;
-    std::sort(supported_page_sizes_.begin(), supported_page_sizes_.end(), std::greater<uint32_t>());
-    supported_page_sizes_.erase(std::unique(supported_page_sizes_.begin(), supported_page_sizes_.end()), supported_page_sizes_.end());
-
-    // build PHTs
-    const unsigned MAX_MULTIPLIER = 256; // prevents runaway allocation; tune as needed
-    for (uint32_t ps : supported_page_sizes_) {
-        if (ps < REGION_SIZE) continue; // ignore nonsensical sizes
-        unsigned multiplier = static_cast<unsigned>(ps / REGION_SIZE);
-        if (multiplier == 0) multiplier = 1;
-        if (multiplier > MAX_MULTIPLIER) multiplier = MAX_MULTIPLIER;
-        int pht_size = static_cast<int>(PT_SIZE * multiplier);
-        // allocate a PatternTable sized for this page-size
-        pt_map[ps] = std::make_unique<PatternTable>(pht_size, PT_WAY);
-        std::cout << "[GAZE] created PHT for page_size=" << ps << " pht_size=" << pht_size << std::endl;
-    }
-}
-
-// helper: choose PT instance for a given VA; fallback to default
-PatternTable* Gaze::get_pt_for_vaddr(uint64_t vaddr)
-{
-    uint32_t page_hint = get_page_size_hint(vaddr);
-    if (page_hint == 0) {
-        // no hint: assume 4KB (default)
-        auto it = pt_map.find(PAGE_SIZE);
-        if (it != pt_map.end())
-            return it->second.get();
-        else
-            return &pt_default;
-    }
-    auto it = pt_map.find(page_hint);
-    if (it != pt_map.end())
-        return it->second.get();
-    // if no exact match found, pick the largest supported page_size <= hint (best-effort)
-    uint32_t best = 0;
-    for (auto &ps : supported_page_sizes_) {
-        if (ps <= page_hint && ps > best) best = ps;
-    }
-    if (best) {
-        return pt_map[best].get();
-    }
-    // final fallback
-    return &pt_default;
-}
-void Gaze::set_warmup(bool warmup) { this->warmup = warmup; this->pb.warmup = warmup; }
 
 // ------------------------- util functions ------------------------- //
 std::pair<float, float> calculate_acc_and_cov(std::vector<int> pattern_1, std::vector<int> pattern_2) {
@@ -554,36 +464,12 @@ bool pattern_all_set(std::vector<int> pattern) {
 void CACHE::prefetcher_initialize() {
     std::cout << NAME << " Gaze NEW NEW prefetcher" << std::endl;
 
-    prefetchers.clear();
-    prefetchers.reserve(NUM_CPUS);
-    for (int c = 0; c < NUM_CPUS; ++c) {
-        prefetchers.emplace_back(gaze::FT_SIZE, gaze::FT_WAY,
-                                 gaze::AT_SIZE, gaze::AT_WAY,
-                                 gaze::PT_SIZE, gaze::PT_WAY,
-                                 gaze::PB_SIZE, gaze::PB_WAY, c);
-    }
-    
-    // access PTW instances via registry
-    auto ptw_list = champsim::ptw_registry::get_ptw_list();
-
-    for (int c = 0; c < NUM_CPUS; ++c) {
-        if (c < static_cast<int>(ptw_list.size()) && ptw_list[c] != nullptr) {
-            prefetchers[c].attach_ptw(ptw_list[c]);
-        } else {
-            std::cerr << "[GAZE] Warning: no PTW registered for cpu=" << c << " (registered=" << ptw_list.size() << ")\n";
-        }
-    }
-
-    // create per-page-size PHTs (example set). Adjust the sizes list as needed.
-    std::vector<uint32_t> defaults = {4096u, 16384u, 2097152u};
-    for (auto &g : prefetchers) {
-        g.init_multi_phts(defaults);
-    }
+    prefetchers = std::vector<gaze::Gaze>(NUM_CPUS, gaze::Gaze(gaze::FT_SIZE, gaze::FT_WAY, gaze::AT_SIZE, gaze::AT_WAY, gaze::PT_SIZE, gaze::PT_WAY, gaze::PB_SIZE, gaze::PB_WAY, cpu));
 }
 
 uint32_t CACHE::prefetcher_cache_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, uint32_t metadata_in) {
-    uint64_t line_addr = (addr >> LOG2_BLOCK_SIZE);
-    uint64_t region_num = (addr >> gaze::LOG2_REGION_SIZE);
+    uint64_t line_addr = (addr >> LOG2_BLOCK_SIZE); 
+    uint64_t region_num = (addr >> LOG2_PAGE_SIZE);
     int offset = line_addr % gaze::NUM_BLOCKS;
 
     prefetchers[cpu].set_warmup(warmup);
@@ -600,6 +486,7 @@ uint32_t CACHE::prefetcher_cache_operate(uint64_t addr, uint64_t ip, uint8_t cac
 
 uint32_t CACHE::prefetcher_cache_fill(uint64_t addr, uint32_t set, uint32_t way, uint8_t prefetch, uint64_t evicted_addr, uint32_t metadata_in) {
     uint64_t evicted_block_num = evicted_addr >> LOG2_BLOCK_SIZE;
+
     return metadata_in;
 }
 

@@ -3,16 +3,19 @@
 
 /*
  * Gaze into the Pattern: Characterizing Spatial Patterns with Internal Temporal Correlations for Hardware Prefetching
- * (header and license omitted for brevity here — keep your original header)
+ *
+ * To appear in 31st IEEE International Symposium on High-Performance Computer Architecture (HPCA 2025),
+ * 3/1/2025-3/5/2025, Las Vegas, NV, USA
+ *
+ * @Authors: Zixiao Chen, Chentao Wu, Yunfei Gu, Ranhao Jia, Jie Li, and Minyi Guo
+ * @Manteiners: Zixiao Chen
+ * @Email: chen_zx@sjtu.edu.cn
+ * @Date: 12/02/2024
  */
 
 #include "custom_util.h"
 #include "cache.h"
-#include <unordered_map>
-#include <vector>
-#include <functional>
-#include "ptw.h"
-#include <memory>
+
 #include <stdint.h>
 #include <random>
 #include <deque>
@@ -26,16 +29,16 @@ namespace gaze {
 #define PT_TYPE custom_util::LRUSetAssociativeCache
 #define PB_TYPE custom_util::LRUSetAssociativeCache
 
-constexpr uint64_t REGION_SIZE = 4 * 1024; // fixed region size = 4KB for Option 2
+constexpr uint64_t REGION_SIZE = 4 * 1024; // '4KB', '8KB', '16KB, '32KB', '64KB, '128KB', '512KB', '1024KB', '2048KB'
 constexpr uint64_t LOG2_REGION_SIZE = champsim::lg2(REGION_SIZE);
 constexpr uint64_t REGION_OFFSET_MASK = (1ULL << (LOG2_REGION_SIZE - LOG2_BLOCK_SIZE)) - 1;
 
-constexpr int NUM_BLOCKS = REGION_SIZE / BLOCK_SIZE; // still 4KB/64B = 64 blocks
+constexpr int NUM_BLOCKS = REGION_SIZE / BLOCK_SIZE;
 
 constexpr int FT_SIZE = 64, FT_WAY = 8;
 constexpr int AT_SIZE = 64, AT_WAY = 8;
 constexpr int PT_WAY = 4;
-constexpr int PT_SIZE = PT_WAY * NUM_BLOCKS; // base PT size (will be scaled per-page-size)
+constexpr int PT_SIZE = PT_WAY * NUM_BLOCKS;
 constexpr int PB_SIZE = 32, PB_WAY = 8;
 
 constexpr int STRIDE_PF_LOOKAHEAD = 2;
@@ -185,22 +188,11 @@ private:
 
     FilterTable ft;
     AccumulateTable at;
-    // keep an (optional) single default PHT for 4KB (backwards-compatible)
-    PatternTable pt_default;
+    PatternTable pt;
     PrefetchBuffer pb;
-
-    // Multi-PHT: map page-size-bytes -> PatternTable instance
-    std::unordered_map<uint32_t, std::unique_ptr<PatternTable>> pt_map;
-
-    // supported page sizes (descending preferred) - init via init_multi_phts()
-    std::vector<uint32_t> supported_page_sizes_;
-    std::unordered_map<uint64_t, uint32_t> page_size_map_;
 
     PatternTable::Entry* find_in_pt(uint64_t trigger, uint64_t second, uint64_t pc, uint64_t region_num);
     void insert_in_pt(const AccumulateTable::Entry& entry, uint64_t region_num);
-
-    // helper to pick PT instance for a virtual address (vaddr)
-    PatternTable* get_pt_for_vaddr(uint64_t vaddr);
 
 public:
     int global_level = 0;
@@ -208,14 +200,6 @@ public:
 
     Gaze(int ft_size, int ft_ways, int at_size, int at_ways, int pt_size, int pt_ways, int pb_size, int pb_ways, int cpu);
     Gaze();
-        // Disable copy (unique_ptr inside)
-    Gaze(const Gaze&) = delete;
-    Gaze& operator=(const Gaze&) = delete;
-
-    // Allow moves (optional but useful)
-    Gaze(Gaze&&) = default;
-    Gaze& operator=(Gaze&&) = default;
-
     void set_warmup(bool warmup);
 
     void access(uint64_t block_num, uint64_t ip, CACHE* cache);
@@ -228,19 +212,6 @@ public:
     void tune_stride_degree(CACHE* cache);
 
     void log();
-
-    // Notify from PTW (called via callback)
-    void notify_page_size(uint64_t page_base_vaddr, uint32_t page_size_bytes);
-
-    // Attach to PTW so the prefetcher receives page-size notifications.
-    void attach_ptw(PageTableWalker* ptw);
-
-    // Query helper: returns page size in bytes for vaddr, or 0 if unknown.
-    uint32_t get_page_size_hint(uint64_t vaddr);
-
-    // Initialize list of supported region/page sizes (e.g., {4096, 16384}) - lightweight
-    // This constructs one PHT per page-size with a size scaled from PT_SIZE.
-    void init_multi_phts(const std::vector<uint32_t>& page_sizes);
 };
 
 } // namespace gaze

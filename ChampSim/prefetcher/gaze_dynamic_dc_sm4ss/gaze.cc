@@ -174,9 +174,7 @@ PatternTable::Entry* PatternTable::find(uint64_t trigger, uint64_t second, uint6
     } else {
         uint64_t hashed_pc = custom_util::my_hash_index(pc, LOG2_BLOCK_SIZE, 8);
 
-        if (con_counter == 8 ||
-             con_pc.end() != std::find_if(con_pc.begin(), 
-             con_pc.end(), [hashed_pc](auto& x) { return x == hashed_pc; })) {
+        if (con_counter == 8 || con_pc.end() != std::find_if(con_pc.begin(), con_pc.end(), [hashed_pc](auto& x) { return x == hashed_pc; })) {
             Entry* ret = new Entry();
             ret->data.con = true;
             for (int i = 0; i < NUM_BLOCKS / 4; i++) {
