@@ -4,123 +4,142 @@
 ###
 
 ######
-# Build ID: c56e42ea
-# Executable: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no
+# Build ID: 8d2949d2
+# Executable: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss
 ######
 
 ###
-# Build ID: c56e42ea
+# Build ID: 8d2949d2
 # Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src
-# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/obj
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj
 ###
 
-c56e42ea_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/obj
-c56e42ea_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/obj/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src/*.cc))
-$(c56e42ea_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src
-$(c56e42ea_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/obj/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/obj
--include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/obj/*.d)
+8d2949d2_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj
+8d2949d2_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src/*.cc))
+$(8d2949d2_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src
+$(8d2949d2_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/src/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/obj/*.d)
 
-/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no: $(c56e42ea_objs_0) | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin
-$(c56e42ea_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/inc
-build_dirs += $(c56e42ea_dirs_0) /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin
-build_objs += $(c56e42ea_objs_0)
-executable_name += /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_objs_0) | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin
+$(8d2949d2_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+build_dirs += $(8d2949d2_dirs_0) /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin
+build_objs += $(8d2949d2_objs_0)
+executable_name += /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss
 
 ###
-# Build ID: c56e42ea_btbDbasic_btb
+# Build ID: 8d2949d2_btbDbasic_btb
 # Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb
-# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/btbDbasic_btb
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/btbDbasic_btb
 ###
 
-c56e42ea_btbDbasic_btb_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/btbDbasic_btb
-c56e42ea_btbDbasic_btb_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/btbDbasic_btb/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb/*.cc))
-$(c56e42ea_btbDbasic_btb_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb
-$(c56e42ea_btbDbasic_btb_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/btbDbasic_btb/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/btbDbasic_btb
--include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/btbDbasic_btb/*.d)
+8d2949d2_btbDbasic_btb_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/btbDbasic_btb
+8d2949d2_btbDbasic_btb_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/btbDbasic_btb/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb/*.cc))
+$(8d2949d2_btbDbasic_btb_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb
+$(8d2949d2_btbDbasic_btb_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/btbDbasic_btb/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/btb/basic_btb/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/btbDbasic_btb
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/btbDbasic_btb/*.d)
 
-$(c56e42ea_btbDbasic_btb_objs_0): CXXFLAGS += -Wno-unused-parameter
-$(c56e42ea_btbDbasic_btb_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/inc
-$(c56e42ea_btbDbasic_btb_objs_0): CPPFLAGS += -include btbDbasic_btb.inc
-module_dirs += $(c56e42ea_btbDbasic_btb_dirs_0)
-module_objs += $(c56e42ea_btbDbasic_btb_objs_0)
+$(8d2949d2_btbDbasic_btb_objs_0): CXXFLAGS += -Wno-unused-parameter
+$(8d2949d2_btbDbasic_btb_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+$(8d2949d2_btbDbasic_btb_objs_0): CPPFLAGS += -include btbDbasic_btb.inc
+module_dirs += $(8d2949d2_btbDbasic_btb_dirs_0)
+module_objs += $(8d2949d2_btbDbasic_btb_objs_0)
 
-/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no: $(c56e42ea_btbDbasic_btb_objs_0)
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_btbDbasic_btb_objs_0)
 ###
-# Build ID: c56e42ea_branchDhashed_perceptron
+# Build ID: 8d2949d2_branchDhashed_perceptron
 # Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron
-# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/branchDhashed_perceptron
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/branchDhashed_perceptron
 ###
 
-c56e42ea_branchDhashed_perceptron_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/branchDhashed_perceptron
-c56e42ea_branchDhashed_perceptron_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/branchDhashed_perceptron/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron/*.cc))
-$(c56e42ea_branchDhashed_perceptron_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron
-$(c56e42ea_branchDhashed_perceptron_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/branchDhashed_perceptron/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/branchDhashed_perceptron
--include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/branchDhashed_perceptron/*.d)
+8d2949d2_branchDhashed_perceptron_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/branchDhashed_perceptron
+8d2949d2_branchDhashed_perceptron_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/branchDhashed_perceptron/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron/*.cc))
+$(8d2949d2_branchDhashed_perceptron_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron
+$(8d2949d2_branchDhashed_perceptron_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/branchDhashed_perceptron/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/branch/hashed_perceptron/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/branchDhashed_perceptron
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/branchDhashed_perceptron/*.d)
 
-$(c56e42ea_branchDhashed_perceptron_objs_0): CXXFLAGS += -Wno-unused-parameter
-$(c56e42ea_branchDhashed_perceptron_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/inc
-$(c56e42ea_branchDhashed_perceptron_objs_0): CPPFLAGS += -include branchDhashed_perceptron.inc
-module_dirs += $(c56e42ea_branchDhashed_perceptron_dirs_0)
-module_objs += $(c56e42ea_branchDhashed_perceptron_objs_0)
+$(8d2949d2_branchDhashed_perceptron_objs_0): CXXFLAGS += -Wno-unused-parameter
+$(8d2949d2_branchDhashed_perceptron_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+$(8d2949d2_branchDhashed_perceptron_objs_0): CPPFLAGS += -include branchDhashed_perceptron.inc
+module_dirs += $(8d2949d2_branchDhashed_perceptron_dirs_0)
+module_objs += $(8d2949d2_branchDhashed_perceptron_objs_0)
 
-/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no: $(c56e42ea_branchDhashed_perceptron_objs_0)
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_branchDhashed_perceptron_objs_0)
 ###
-# Build ID: c56e42ea_prefetcherDno
+# Build ID: 8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss
+# Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/gaze_dynamic_dc_sm4ss
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDgaze_dynamic_dc_sm4ss
+###
+
+8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDgaze_dynamic_dc_sm4ss
+8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/gaze_dynamic_dc_sm4ss/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDgaze_dynamic_dc_sm4ss/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/gaze_dynamic_dc_sm4ss/*.cc))
+$(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/gaze_dynamic_dc_sm4ss
+$(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDgaze_dynamic_dc_sm4ss/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/gaze_dynamic_dc_sm4ss/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDgaze_dynamic_dc_sm4ss
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDgaze_dynamic_dc_sm4ss/*.d)
+
+$(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0): CXXFLAGS += -Wno-unused-parameter
+$(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+$(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0): CPPFLAGS += -include prefetcherDgaze_dynamic_dc_sm4ss.inc
+module_dirs += $(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_dirs_0)
+module_objs += $(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0)
+
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_prefetcherDgaze_dynamic_dc_sm4ss_objs_0)
+###
+# Build ID: 8d2949d2_prefetcherDno
 # Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no
-# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno
 ###
 
-c56e42ea_prefetcherDno_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno
-c56e42ea_prefetcherDno_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no/*.cc))
-$(c56e42ea_prefetcherDno_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no
-$(c56e42ea_prefetcherDno_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno
--include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno/*.d)
+8d2949d2_prefetcherDno_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno
+8d2949d2_prefetcherDno_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no/*.cc))
+$(8d2949d2_prefetcherDno_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no
+$(8d2949d2_prefetcherDno_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno/*.d)
 
-$(c56e42ea_prefetcherDno_objs_0): CXXFLAGS += -Wno-unused-parameter
-$(c56e42ea_prefetcherDno_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/inc
-$(c56e42ea_prefetcherDno_objs_0): CPPFLAGS += -include prefetcherDno.inc
-module_dirs += $(c56e42ea_prefetcherDno_dirs_0)
-module_objs += $(c56e42ea_prefetcherDno_objs_0)
+$(8d2949d2_prefetcherDno_objs_0): CXXFLAGS += -Wno-unused-parameter
+$(8d2949d2_prefetcherDno_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+$(8d2949d2_prefetcherDno_objs_0): CPPFLAGS += -include prefetcherDno.inc
+module_dirs += $(8d2949d2_prefetcherDno_dirs_0)
+module_objs += $(8d2949d2_prefetcherDno_objs_0)
 
-/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no: $(c56e42ea_prefetcherDno_objs_0)
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_prefetcherDno_objs_0)
 ###
-# Build ID: c56e42ea_prefetcherDno_instr
+# Build ID: 8d2949d2_prefetcherDno_instr
 # Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr
-# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno_instr
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno_instr
 ###
 
-c56e42ea_prefetcherDno_instr_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno_instr
-c56e42ea_prefetcherDno_instr_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno_instr/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr/*.cc))
-$(c56e42ea_prefetcherDno_instr_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr
-$(c56e42ea_prefetcherDno_instr_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno_instr/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno_instr
--include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/prefetcherDno_instr/*.d)
+8d2949d2_prefetcherDno_instr_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno_instr
+8d2949d2_prefetcherDno_instr_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno_instr/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr/*.cc))
+$(8d2949d2_prefetcherDno_instr_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr
+$(8d2949d2_prefetcherDno_instr_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno_instr/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/prefetcher/no_instr/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno_instr
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/prefetcherDno_instr/*.d)
 
-$(c56e42ea_prefetcherDno_instr_objs_0): CXXFLAGS += -Wno-unused-parameter
-$(c56e42ea_prefetcherDno_instr_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/inc
-$(c56e42ea_prefetcherDno_instr_objs_0): CPPFLAGS += -include prefetcherDno_instr.inc
-module_dirs += $(c56e42ea_prefetcherDno_instr_dirs_0)
-module_objs += $(c56e42ea_prefetcherDno_instr_objs_0)
+$(8d2949d2_prefetcherDno_instr_objs_0): CXXFLAGS += -Wno-unused-parameter
+$(8d2949d2_prefetcherDno_instr_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+$(8d2949d2_prefetcherDno_instr_objs_0): CPPFLAGS += -include prefetcherDno_instr.inc
+module_dirs += $(8d2949d2_prefetcherDno_instr_dirs_0)
+module_objs += $(8d2949d2_prefetcherDno_instr_objs_0)
 
-/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no: $(c56e42ea_prefetcherDno_instr_objs_0)
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_prefetcherDno_instr_objs_0)
 ###
-# Build ID: c56e42ea_replacementDlru
+# Build ID: 8d2949d2_replacementDlru
 # Source: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru
-# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/replacementDlru
+# Destination: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/replacementDlru
 ###
 
-c56e42ea_replacementDlru_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/replacementDlru
-c56e42ea_replacementDlru_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/replacementDlru/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru/*.cc))
-$(c56e42ea_replacementDlru_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru
-$(c56e42ea_replacementDlru_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/replacementDlru/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/replacementDlru
--include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/replacementDlru/*.d)
+8d2949d2_replacementDlru_dirs_0 = /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/replacementDlru
+8d2949d2_replacementDlru_objs_0 = $(patsubst /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru/%.cc, /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/replacementDlru/%.o, $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru/*.cc))
+$(8d2949d2_replacementDlru_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru
+$(8d2949d2_replacementDlru_objs_0): /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/replacementDlru/%.o: /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/replacement/lru/%.cc | /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/replacementDlru
+-include $(wildcard /home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/replacementDlru/*.d)
 
-$(c56e42ea_replacementDlru_objs_0): CXXFLAGS += -Wno-unused-parameter
-$(c56e42ea_replacementDlru_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/c56e42ea/inc
-$(c56e42ea_replacementDlru_objs_0): CPPFLAGS += -include replacementDlru.inc
-module_dirs += $(c56e42ea_replacementDlru_dirs_0)
-module_objs += $(c56e42ea_replacementDlru_objs_0)
+$(8d2949d2_replacementDlru_objs_0): CXXFLAGS += -Wno-unused-parameter
+$(8d2949d2_replacementDlru_objs_0): CPPFLAGS += -I/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/.csconfig/8d2949d2/inc
+$(8d2949d2_replacementDlru_objs_0): CPPFLAGS += -include replacementDlru.inc
+module_dirs += $(8d2949d2_replacementDlru_dirs_0)
+module_objs += $(8d2949d2_replacementDlru_objs_0)
 
-/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_no: $(c56e42ea_replacementDlru_objs_0)
+/home/hariom/Gaze-Spatial-Prefetcher/ChampSim/bin/champsim_1core_gaze_dynamic_dc_sm4ss: $(8d2949d2_replacementDlru_objs_0)
 
 ######
 # Build ID: d8acf256

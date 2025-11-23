@@ -19,12 +19,12 @@ workloads_spec06 = [
 ]
 
 workload_spec_single = [
-    ['403.gcc-17B.champsimtrace.xz', '403_17'],
-    ['410.bwaves-1963B.champsimtrace.xz', '410_1963'],
-    ['429.mcf-51B.champsimtrace.xz', '429_51'],
+    # ['403.gcc-17B.champsimtrace.xz', '403_17'],
+    # ['410.bwaves-1963B.champsimtrace.xz', '410_1963'],
+    # ['429.mcf-51B.champsimtrace.xz', '429_51'],
 
-    ['436.cactusADM-1804B.champsimtrace.xz', '436_1804'],  # comma added here
-    ['437.leslie3d-271B.champsimtrace.xz', '437_271'],
+    # ['436.cactusADM-1804B.champsimtrace.xz', '436_1804'],  # comma added here
+    # ['437.leslie3d-271B.champsimtrace.xz', '437_271'],
 
     ['450.soplex-92B.champsimtrace.xz','450_92'],
     ['462.libquantum-714B.champsimtrace.xz','462_714'],
