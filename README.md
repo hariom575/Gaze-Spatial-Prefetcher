@@ -135,3 +135,6 @@ python choose_the_script.py
 The simulation does not directly output results. Instead, it writes the raw data to a json file, which is saved in `GAZE_HOME/json` directory. Meanwhile, runtime logs are stored in `GAZE_HOME/log`.
 The plotting scripts convert the raw data into result data and generate the figures included in the paper.
 Therefore, the generated figures should be consistent with those presented in the paper.
+
+
+ppt link for CS 683 Checkpoint-2 :https://docs.google.com/presentation/d/1LhptaKT0boCuTXA1xZQKm1R7Pe7PdFKtUp7zjjkZihg/edit?usp=sharing 
