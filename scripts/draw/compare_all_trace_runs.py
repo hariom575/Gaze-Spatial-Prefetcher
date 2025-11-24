@@ -6,6 +6,38 @@ from draw_para import *
 
 print('Using results from run_single_core_gaze_analysis.py and run_single_core_main.py')
 
+
+import csv
+
+# -------------------------- CSV Export Helper --------------------------
+def save_metric_csv(metric_name, metric_dict, prefetchers):
+    """
+    Save metric values into a CSV file:
+    rows = workloads
+    columns = prefetchers
+    """
+    os.makedirs("csv", exist_ok=True)
+
+    workloads = list(metric_dict['no'].keys())
+    csv_path = f"csv/{metric_name.replace(' ', '_')}.csv"
+
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+
+        # Header
+        header = ["Workload"] + [prefetcher_dict.get(p, p) for p in prefetchers]
+        writer.writerow(header)
+
+        # Rows
+        for w in workloads:
+            row = [workloads_name_map.get(w, w)]
+            for p in prefetchers:
+                row.append(metric_dict[p][w][0])
+            writer.writerow(row)
+
+    print(f"[CSV Saved] {csv_path}")
+
+
 # -------------------------- prefetchers list --------------------------
 prefetchers = [
     'no',
@@ -96,6 +128,7 @@ for p in prefetchers:
         ipc_speedup[p][w] = [ipc[p][w][0] / ipc['no'][w][0]]
 
 plot_metric_across_workloads('IPC Speedup', ipc_speedup, prefetchers)
+save_metric_csv("IPC_Speedup", ipc_speedup, prefetchers)
 
 # -------------------------- L2 Prefetch Accuracy --------------------------
 eliminate_invalid_values(l2_pf_useful, prefetchers, workloads_simplified)
@@ -110,3 +143,36 @@ for p in prefetchers:
         l2_accuracy[p][w] = [acc]
 
 plot_metric_across_workloads('L2 Prefetch Accuracy', l2_accuracy, prefetchers)
+save_metric_csv("L2_Prefetch_Accuracy", l2_accuracy, prefetchers)
+
+
+# -------------------------- L2 Prefetch Coverage --------------------------
+eliminate_invalid_values(l2_pf_useful, prefetchers, workloads_simplified)
+eliminate_invalid_values(llc_load_miss, prefetchers, workloads_simplified)
+
+l2_coverage = {p: {} for p in prefetchers}
+for p in prefetchers:
+    for w in workloads_simplified:
+        useful = l2_pf_useful[p][w][0]
+        misses = llc_load_miss[p][w][0]
+        cov = useful / misses if misses > 0 else 0
+        l2_coverage[p][w] = [cov]
+
+plot_metric_across_workloads('L2 Prefetch Coverage', l2_coverage, prefetchers)
+save_metric_csv("L2_Prefetch_Coverage", l2_coverage, prefetchers)
+
+
+# -------------------------- L2 Prefetch Pollution --------------------------
+eliminate_invalid_values(l2_pf_useless, prefetchers, workloads_simplified)
+eliminate_invalid_values(llc_load_miss, prefetchers, workloads_simplified)
+
+l2_pollution = {p: {} for p in prefetchers}
+for p in prefetchers:
+    for w in workloads_simplified:
+        useless = l2_pf_useless[p][w][0]
+        misses = llc_load_miss[p][w][0]
+        pol = useless / misses if misses > 0 else 0
+        l2_pollution[p][w] = [pol]
+
+plot_metric_across_workloads('L2 Prefetch Pollution', l2_pollution, prefetchers)
+save_metric_csv("L2_Prefetch_Pollution", l2_pollution, prefetchers)

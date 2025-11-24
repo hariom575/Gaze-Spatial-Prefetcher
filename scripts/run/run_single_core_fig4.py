@@ -8,12 +8,12 @@ def main():
     os.chdir(script_dir + '/../../ChampSim')
     
     print('Running single-core fig. 4 simulations. The results can be used to generate fig. 4')
-    
+        
     prefix = 'v00'
     num_warmup, num_simulation = 200000000, 200000000
     begin, num = 0, 1
     
-    for prefetcher in ['2offset', '3offset', '4offset']:
+    for prefetcher in ['gaze_dynamic_dc_sm4ss']:
         run_1core(prefetcher, prefix, num_warmup, num_simulation, begin, num)
     
     print('Running.')
