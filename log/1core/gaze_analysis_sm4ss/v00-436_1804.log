@@ -13,55 +13,334 @@ Basic BTB sets: 1024 ways: 8 indirect buffer size: 4096 RAS size: 64
 cpu0_L1D Gaze NEW NEW prefetcher
 Pattern Table index_len: 6
 Off-chip DRAM Size: 4 GiB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
-Heartbeat CPU 0 instructions: 10000001 cycles: 2550596 heartbeat IPC: 3.92066 cumulative IPC: 3.92066 (Simulation time: 0 hr 12 min 48 sec) 
-Heartbeat CPU 0 instructions: 20000004 cycles: 5205359 heartbeat IPC: 3.76682 cumulative IPC: 3.8422 (Simulation time: 0 hr 25 min 38 sec) 
-Heartbeat CPU 0 instructions: 30000001 cycles: 7760917 heartbeat IPC: 3.91304 cumulative IPC: 3.86553 (Simulation time: 0 hr 38 min 43 sec) 
-Heartbeat CPU 0 instructions: 40000003 cycles: 10315478 heartbeat IPC: 3.91457 cumulative IPC: 3.87767 (Simulation time: 0 hr 51 min 33 sec) 
-Heartbeat CPU 0 instructions: 50000001 cycles: 12972778 heartbeat IPC: 3.76322 cumulative IPC: 3.85423 (Simulation time: 1 hr 4 min 43 sec) 
-Heartbeat CPU 0 instructions: 60000004 cycles: 15526649 heartbeat IPC: 3.91563 cumulative IPC: 3.86433 (Simulation time: 1 hr 17 min 52 sec) 
-Heartbeat CPU 0 instructions: 70000000 cycles: 18184139 heartbeat IPC: 3.76295 cumulative IPC: 3.84951 (Simulation time: 1 hr 31 min 1 sec) 
-Heartbeat CPU 0 instructions: 80000000 cycles: 20739260 heartbeat IPC: 3.91371 cumulative IPC: 3.85742 (Simulation time: 1 hr 44 min 17 sec) 
-Heartbeat CPU 0 instructions: 90000003 cycles: 23395888 heartbeat IPC: 3.76418 cumulative IPC: 3.84683 (Simulation time: 1 hr 57 min 18 sec) 
-Heartbeat CPU 0 instructions: 100000003 cycles: 25945838 heartbeat IPC: 3.92165 cumulative IPC: 3.85419 (Simulation time: 2 hr 10 min 18 sec) 
-Heartbeat CPU 0 instructions: 110000003 cycles: 28600298 heartbeat IPC: 3.76725 cumulative IPC: 3.84612 (Simulation time: 2 hr 23 min 16 sec) 
-Heartbeat CPU 0 instructions: 120000000 cycles: 31150714 heartbeat IPC: 3.92093 cumulative IPC: 3.85224 (Simulation time: 2 hr 36 min 17 sec) 
-Heartbeat CPU 0 instructions: 130000001 cycles: 33728405 heartbeat IPC: 3.87945 cumulative IPC: 3.85432 (Simulation time: 2 hr 49 min 29 sec) 
-Heartbeat CPU 0 instructions: 140000004 cycles: 36354616 heartbeat IPC: 3.80777 cumulative IPC: 3.85096 (Simulation time: 3 hr 2 min 36 sec) 
-Heartbeat CPU 0 instructions: 150000000 cycles: 38904799 heartbeat IPC: 3.92129 cumulative IPC: 3.85557 (Simulation time: 3 hr 15 min 57 sec) 
-Heartbeat CPU 0 instructions: 160000003 cycles: 41558630 heartbeat IPC: 3.76814 cumulative IPC: 3.84999 (Simulation time: 3 hr 28 min 51 sec) 
-Heartbeat CPU 0 instructions: 170000003 cycles: 44109129 heartbeat IPC: 3.92081 cumulative IPC: 3.85408 (Simulation time: 3 hr 41 min 59 sec) 
-Heartbeat CPU 0 instructions: 180000001 cycles: 46763682 heartbeat IPC: 3.76712 cumulative IPC: 3.84915 (Simulation time: 3 hr 55 min 4 sec) 
-Heartbeat CPU 0 instructions: 190000001 cycles: 49315032 heartbeat IPC: 3.9195 cumulative IPC: 3.85279 (Simulation time: 4 hr 7 min 56 sec) 
-Heartbeat CPU 0 instructions: 200000000 cycles: 51969041 heartbeat IPC: 3.76789 cumulative IPC: 3.84845 (Simulation time: 4 hr 20 min 43 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 1000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 1500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 2000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 2500000
+Heartbeat CPU 0 instructions: 10000001 cycles: 2550596 heartbeat IPC: 3.92066 cumulative IPC: 3.92066 (Simulation time: 0 hr 9 min 6 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 3000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 3500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 4000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 4500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 5000000
+Heartbeat CPU 0 instructions: 20000004 cycles: 5205359 heartbeat IPC: 3.76682 cumulative IPC: 3.8422 (Simulation time: 0 hr 18 min 25 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 5500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 6000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 6500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 7000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 7500000
+Heartbeat CPU 0 instructions: 30000001 cycles: 7760917 heartbeat IPC: 3.91304 cumulative IPC: 3.86553 (Simulation time: 0 hr 27 min 56 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 8000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 8500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 9000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 9500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 10000000
+Heartbeat CPU 0 instructions: 40000003 cycles: 10315478 heartbeat IPC: 3.91457 cumulative IPC: 3.87767 (Simulation time: 0 hr 37 min 23 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 10500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 11000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 11500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 12000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 12500000
+Heartbeat CPU 0 instructions: 50000001 cycles: 12972778 heartbeat IPC: 3.76322 cumulative IPC: 3.85423 (Simulation time: 0 hr 46 min 57 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 13000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 13500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 14000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 14500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 15000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 15500000
+Heartbeat CPU 0 instructions: 60000004 cycles: 15526649 heartbeat IPC: 3.91563 cumulative IPC: 3.86433 (Simulation time: 0 hr 56 min 29 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 16000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 16500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 17000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 17500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 18000000
+Heartbeat CPU 0 instructions: 70000000 cycles: 18184139 heartbeat IPC: 3.76295 cumulative IPC: 3.84951 (Simulation time: 1 hr 6 min 0 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 18500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 19000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 19500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 20000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 20500000
+Heartbeat CPU 0 instructions: 80000000 cycles: 20739260 heartbeat IPC: 3.91371 cumulative IPC: 3.85742 (Simulation time: 1 hr 15 min 51 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 21000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 21500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 22000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 22500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 23000000
+Heartbeat CPU 0 instructions: 90000003 cycles: 23395888 heartbeat IPC: 3.76418 cumulative IPC: 3.84683 (Simulation time: 1 hr 25 min 25 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 23500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 24000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 24500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 25000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 25500000
+Heartbeat CPU 0 instructions: 100000003 cycles: 25945838 heartbeat IPC: 3.92165 cumulative IPC: 3.85419 (Simulation time: 1 hr 35 min 8 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 26000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 26500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 27000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 27500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 28000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 28500000
+Heartbeat CPU 0 instructions: 110000003 cycles: 28600298 heartbeat IPC: 3.76725 cumulative IPC: 3.84612 (Simulation time: 1 hr 44 min 35 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 29000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 29500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 30000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 30500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 31000000
+Heartbeat CPU 0 instructions: 120000000 cycles: 31150714 heartbeat IPC: 3.92093 cumulative IPC: 3.85224 (Simulation time: 1 hr 54 min 12 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 31500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 32000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 32500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 33000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 33500000
+Heartbeat CPU 0 instructions: 130000001 cycles: 33728405 heartbeat IPC: 3.87945 cumulative IPC: 3.85432 (Simulation time: 2 hr 3 min 55 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 34000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 34500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 35000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 35500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 36000000
+Heartbeat CPU 0 instructions: 140000004 cycles: 36354616 heartbeat IPC: 3.80777 cumulative IPC: 3.85096 (Simulation time: 2 hr 13 min 39 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 36500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 37000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 37500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 38000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 38500000
+Heartbeat CPU 0 instructions: 150000000 cycles: 38904799 heartbeat IPC: 3.92129 cumulative IPC: 3.85557 (Simulation time: 2 hr 23 min 22 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 39000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 39500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 40000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 40500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 41000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 41500000
+Heartbeat CPU 0 instructions: 160000003 cycles: 41558630 heartbeat IPC: 3.76814 cumulative IPC: 3.84999 (Simulation time: 2 hr 32 min 52 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 42000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 42500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 43000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 43500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 44000000
+Heartbeat CPU 0 instructions: 170000003 cycles: 44109129 heartbeat IPC: 3.92081 cumulative IPC: 3.85408 (Simulation time: 2 hr 42 min 24 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 44500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 45000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 45500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 46000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 46500000
+Heartbeat CPU 0 instructions: 180000001 cycles: 46763682 heartbeat IPC: 3.76712 cumulative IPC: 3.84915 (Simulation time: 2 hr 52 min 13 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 47000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 47500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 48000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 48500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 49000000
+Heartbeat CPU 0 instructions: 190000001 cycles: 49315032 heartbeat IPC: 3.9195 cumulative IPC: 3.85279 (Simulation time: 3 hr 1 min 47 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 49500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 50000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 50500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 51000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 51500000
+Heartbeat CPU 0 instructions: 200000000 cycles: 51969041 heartbeat IPC: 3.76789 cumulative IPC: 3.84845 (Simulation time: 3 hr 11 min 28 sec) 
 Max paddr 68M
-Warmup finished CPU 0 instructions: 200000000 cycles: 51969042 cumulative IPC: 3.84845 (Simulation time: 4 hr 20 min 43 sec) 
+Warmup finished CPU 0 instructions: 200000000 cycles: 51969042 cumulative IPC: 3.84845 (Simulation time: 3 hr 11 min 28 sec) 
 
-Warmup complete CPU 0 instructions: 200000000 cycles: 51969042 (Simulation time: 4 hr 20 min 43 sec) 
+Warmup complete CPU 0 instructions: 200000000 cycles: 51969042 (Simulation time: 3 hr 11 min 28 sec) 
 
-Heartbeat CPU 0 instructions: 210000001 cycles: 54989581 heartbeat IPC: 3.31067 cumulative IPC: 3.31067 (Simulation time: 4 hr 36 min 33 sec) 
-Heartbeat CPU 0 instructions: 220000000 cycles: 59279482 heartbeat IPC: 2.33106 cumulative IPC: 2.73582 (Simulation time: 4 hr 53 min 48 sec) 
-Heartbeat CPU 0 instructions: 230000000 cycles: 64127084 heartbeat IPC: 2.06288 cumulative IPC: 2.46751 (Simulation time: 5 hr 11 min 40 sec) 
-Heartbeat CPU 0 instructions: 240000000 cycles: 67095179 heartbeat IPC: 3.36917 cumulative IPC: 2.64443 (Simulation time: 5 hr 27 min 22 sec) 
-Heartbeat CPU 0 instructions: 250000003 cycles: 73248363 heartbeat IPC: 1.62518 cumulative IPC: 2.3497 (Simulation time: 5 hr 46 min 20 sec) 
-Heartbeat CPU 0 instructions: 260000003 cycles: 76252480 heartbeat IPC: 3.32877 cumulative IPC: 2.47082 (Simulation time: 6 hr 2 min 3 sec) 
-Heartbeat CPU 0 instructions: 270000000 cycles: 82379097 heartbeat IPC: 1.63223 cumulative IPC: 2.30188 (Simulation time: 6 hr 21 min 6 sec) 
-Heartbeat CPU 0 instructions: 280000002 cycles: 85362910 heartbeat IPC: 3.35142 cumulative IPC: 2.39565 (Simulation time: 6 hr 35 min 33 sec) 
-Heartbeat CPU 0 instructions: 290000000 cycles: 91457424 heartbeat IPC: 1.64082 cumulative IPC: 2.27916 (Simulation time: 6 hr 50 min 49 sec) 
-Heartbeat CPU 0 instructions: 300000002 cycles: 94495193 heartbeat IPC: 3.2919 cumulative IPC: 2.3515 (Simulation time: 7 hr 3 min 51 sec) 
-Heartbeat CPU 0 instructions: 310000002 cycles: 99594631 heartbeat IPC: 1.96101 cumulative IPC: 2.30969 (Simulation time: 7 hr 18 min 5 sec) 
-Heartbeat CPU 0 instructions: 320000002 cycles: 103591536 heartbeat IPC: 2.50194 cumulative IPC: 2.32457 (Simulation time: 7 hr 31 min 32 sec) 
-Heartbeat CPU 0 instructions: 330000003 cycles: 106534501 heartbeat IPC: 3.39794 cumulative IPC: 2.38246 (Simulation time: 7 hr 43 min 50 sec) 
-Heartbeat CPU 0 instructions: 340000001 cycles: 112623505 heartbeat IPC: 1.64231 cumulative IPC: 2.30816 (Simulation time: 7 hr 58 min 26 sec) 
-Heartbeat CPU 0 instructions: 350000003 cycles: 115558270 heartbeat IPC: 3.40743 cumulative IPC: 2.3589 (Simulation time: 8 hr 9 min 43 sec) 
-Heartbeat CPU 0 instructions: 360000001 cycles: 121626970 heartbeat IPC: 1.6478 cumulative IPC: 2.29694 (Simulation time: 8 hr 22 min 18 sec) 
-Heartbeat CPU 0 instructions: 370000000 cycles: 124609035 heartbeat IPC: 3.35339 cumulative IPC: 2.34031 (Simulation time: 8 hr 32 min 20 sec) 
-Heartbeat CPU 0 instructions: 380000004 cycles: 130694199 heartbeat IPC: 1.64335 cumulative IPC: 2.28644 (Simulation time: 8 hr 43 min 51 sec) 
-Heartbeat CPU 0 instructions: 390000001 cycles: 133726709 heartbeat IPC: 3.2976 cumulative IPC: 2.32395 (Simulation time: 8 hr 53 min 9 sec) 
-Heartbeat CPU 0 instructions: 400000000 cycles: 139591922 heartbeat IPC: 1.70497 cumulative IPC: 2.28251 (Simulation time: 9 hr 3 min 16 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 52000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 52500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 53000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 53500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 54000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 54500000
+Heartbeat CPU 0 instructions: 210000001 cycles: 54989581 heartbeat IPC: 3.31067 cumulative IPC: 3.31067 (Simulation time: 3 hr 23 min 6 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 55000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 55500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 56000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 56500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 57000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 57500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 58000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 58500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 59000000
+Heartbeat CPU 0 instructions: 220000000 cycles: 59279482 heartbeat IPC: 2.33106 cumulative IPC: 2.73582 (Simulation time: 3 hr 35 min 36 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 59500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 60000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 60500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 61000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 61500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 62000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 62500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 63000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 63500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 64000000
+Heartbeat CPU 0 instructions: 230000000 cycles: 64127084 heartbeat IPC: 2.06288 cumulative IPC: 2.46751 (Simulation time: 3 hr 49 min 5 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 64500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 65000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 65500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 66000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 66500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 67000000
+Heartbeat CPU 0 instructions: 240000000 cycles: 67095179 heartbeat IPC: 3.36917 cumulative IPC: 2.64443 (Simulation time: 4 hr 1 min 1 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 67500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 68000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 68500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 69000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 69500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 70000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 70500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 71000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 71500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 72000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 72500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 73000000
+Heartbeat CPU 0 instructions: 250000003 cycles: 73248363 heartbeat IPC: 1.62518 cumulative IPC: 2.3497 (Simulation time: 4 hr 15 min 2 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 73500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 74000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 74500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 75000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 75500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 76000000
+Heartbeat CPU 0 instructions: 260000003 cycles: 76252480 heartbeat IPC: 3.32877 cumulative IPC: 2.47082 (Simulation time: 4 hr 26 min 54 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 76500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 77000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 77500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 78000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 78500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 79000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 79500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 80000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 80500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 81000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 81500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 82000000
+Heartbeat CPU 0 instructions: 270000000 cycles: 82379097 heartbeat IPC: 1.63223 cumulative IPC: 2.30188 (Simulation time: 4 hr 41 min 3 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 82500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 83000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 83500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 84000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 84500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 85000000
+Heartbeat CPU 0 instructions: 280000002 cycles: 85362910 heartbeat IPC: 3.35142 cumulative IPC: 2.39565 (Simulation time: 4 hr 52 min 0 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 85500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 86000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 86500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 87000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 87500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 88000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 88500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 89000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 89500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 90000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 90500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 91000000
+Heartbeat CPU 0 instructions: 290000000 cycles: 91457424 heartbeat IPC: 1.64082 cumulative IPC: 2.27916 (Simulation time: 5 hr 2 min 10 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 91500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 92000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 92500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 93000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 93500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 94000000
+Heartbeat CPU 0 instructions: 300000002 cycles: 94495193 heartbeat IPC: 3.2919 cumulative IPC: 2.3515 (Simulation time: 5 hr 10 min 13 sec) 
+[PTW] 🔁 Switched page size to 2048 KB at cycle 94500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 95000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 95500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 96000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 96500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 97000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 97500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 98000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 98500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 99000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 99500000
+Heartbeat CPU 0 instructions: 310000002 cycles: 99594631 heartbeat IPC: 1.96101 cumulative IPC: 2.30969 (Simulation time: 5 hr 19 min 21 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 100000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 100500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 101000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 101500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 102000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 102500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 103000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 103500000
+Heartbeat CPU 0 instructions: 320000002 cycles: 103591536 heartbeat IPC: 2.50194 cumulative IPC: 2.32457 (Simulation time: 5 hr 27 min 33 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 104000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 104500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 105000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 105500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 106000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 106500000
+Heartbeat CPU 0 instructions: 330000003 cycles: 106534501 heartbeat IPC: 3.39794 cumulative IPC: 2.38246 (Simulation time: 5 hr 35 min 14 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 107000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 107500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 108000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 108500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 109000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 109500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 110000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 110500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 111000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 111500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 112000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 112500000
+Heartbeat CPU 0 instructions: 340000001 cycles: 112623505 heartbeat IPC: 1.64231 cumulative IPC: 2.30816 (Simulation time: 5 hr 43 min 51 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 113000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 113500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 114000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 114500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 115000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 115500000
+Heartbeat CPU 0 instructions: 350000003 cycles: 115558270 heartbeat IPC: 3.40743 cumulative IPC: 2.3589 (Simulation time: 5 hr 50 min 29 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 116000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 116500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 117000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 117500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 118000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 118500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 119000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 119500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 120000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 120500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 121000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 121500000
+Heartbeat CPU 0 instructions: 360000001 cycles: 121626970 heartbeat IPC: 1.6478 cumulative IPC: 2.29694 (Simulation time: 5 hr 57 min 12 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 122000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 122500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 123000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 123500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 124000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 124500000
+Heartbeat CPU 0 instructions: 370000000 cycles: 124609035 heartbeat IPC: 3.35339 cumulative IPC: 2.34031 (Simulation time: 6 hr 2 min 31 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 125000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 125500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 126000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 126500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 127000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 127500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 128000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 128500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 129000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 129500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 130000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 130500000
+Heartbeat CPU 0 instructions: 380000004 cycles: 130694199 heartbeat IPC: 1.64335 cumulative IPC: 2.28644 (Simulation time: 6 hr 8 min 34 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 131000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 131500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 132000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 132500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 133000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 133500000
+Heartbeat CPU 0 instructions: 390000001 cycles: 133726709 heartbeat IPC: 3.2976 cumulative IPC: 2.32395 (Simulation time: 6 hr 13 min 45 sec) 
+[PTW] 🔁 Switched page size to 4 KB at cycle 134000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 134500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 135000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 135500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 136000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 136500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 137000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 137500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 138000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 138500000
+[PTW] 🔁 Switched page size to 4 KB at cycle 139000000
+[PTW] 🔁 Switched page size to 2048 KB at cycle 139500000
+Heartbeat CPU 0 instructions: 400000000 cycles: 139591922 heartbeat IPC: 1.70497 cumulative IPC: 2.28251 (Simulation time: 6 hr 19 min 33 sec) 
 Max paddr 129M
-Simulation finished CPU 0 instructions: 200000000 cycles: 87622881 cumulative IPC: 2.28251 (Simulation time: 9 hr 3 min 16 sec) 
+Simulation finished CPU 0 instructions: 200000000 cycles: 87622881 cumulative IPC: 2.28251 (Simulation time: 6 hr 19 min 33 sec) 
 
-Simulation complete CPU 0 instructions: 200000000 cycles: 87622881 (Simulation time: 9 hr 3 min 16 sec) 
+Simulation complete CPU 0 instructions: 200000000 cycles: 87622881 (Simulation time: 6 hr 19 min 33 sec) 
 
 
 ChampSim completed all CPUs
